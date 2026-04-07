@@ -6,8 +6,8 @@ apis:
     name: Wallarm API Security Platform
     tags:
       - API Security
-      - WAF
       - Security Testing
+      - WAF
     humanURL: https://docs.wallarm.com/
     properties:
       - url: https://docs.wallarm.com/
@@ -21,9 +21,9 @@ apis:
       for APIs, apps, and microservices across multi-cloud and Kubernetes environments.
 name: Wallarm
 tags:
-  - Security
   - Discovery
   - Platform
+  - Security
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
