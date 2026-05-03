@@ -1,0 +1,1032 @@
+openapi: 3.0.3
+info:
+  title: Wallarm API
+  description: >-
+    The Wallarm API provides programmatic access to the Wallarm API Security
+    Platform. It enables management of attacks, incidents, vulnerabilities,
+    security rules, IP lists, filter nodes, users, integrations, and triggers.
+    The API is available on both US Cloud and EU Cloud endpoints and uses
+    API token authentication.
+  version: 4.0.0
+  termsOfService: https://www.wallarm.com/terms-of-service
+  contact:
+    name: Wallarm Support
+    url: https://docs.wallarm.com/
+    email: support@wallarm.com
+  license:
+    name: Proprietary
+    url: https://www.wallarm.com/terms-of-service
+servers:
+  - url: https://us1.api.wallarm.com
+    description: Wallarm US Cloud API
+  - url: https://api.wallarm.com
+    description: Wallarm EU Cloud API
+security:
+  - ApiTokenAuth: []
+tags:
+  - name: User
+    description: User account and authentication management
+  - name: Attacks
+    description: Attack and incident data management
+  - name: Vulnerabilities
+    description: Vulnerability detection and management
+  - name: Rules
+    description: Security rules and virtual patch management
+  - name: IP Lists
+    description: IP allowlist, denylist, and graylist management
+  - name: Nodes
+    description: Wallarm filter node management
+  - name: Integrations
+    description: Third-party integrations (SIEM, notifications, etc.)
+  - name: Triggers
+    description: Automated trigger and alert management
+  - name: Applications
+    description: Application and scope management
+paths:
+  /v1/user:
+    post:
+      operationId: getUser
+      summary: Get User Details
+      description: >-
+        Retrieve current user account details including the client ID required
+        for subsequent API calls in multi-tenant environments.
+      tags:
+        - User
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: array
+                  items:
+                    type: string
+                  description: List of fields to return
+      responses:
+        '200':
+          description: User details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          description: Unauthorized - invalid or missing API token
+  /v1/objects/attack:
+    post:
+      operationId: listAttacks
+      summary: List Attacks
+      description: >-
+        Retrieve a list of attacks detected by Wallarm. Supports filtering by
+        time range, client ID, attack type, and other criteria.
+      tags:
+        - Attacks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of attacks returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttackListResponse'
+        '401':
+          description: Unauthorized
+  /v2/objects/attack:
+    post:
+      operationId: listAttacksPaginated
+      summary: List Attacks (Paginated)
+      description: >-
+        Retrieve attacks with cursor-based pagination, returning up to 100
+        records per page. Use the returned cursor to fetch subsequent pages.
+      tags:
+        - Attacks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaginatedQueryRequest'
+      responses:
+        '200':
+          description: Paginated list of attacks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAttackResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/vuln:
+    post:
+      operationId: listVulnerabilities
+      summary: List Vulnerabilities
+      description: >-
+        Retrieve detected vulnerabilities. Supports filtering by status, time
+        range, and client ID.
+      tags:
+        - Vulnerabilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VulnQueryRequest'
+      responses:
+        '200':
+          description: List of vulnerabilities returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnListResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/hint:
+    post:
+      operationId: listRules
+      summary: List Security Rules
+      description: >-
+        Retrieve all security rules (hints) configured for the client.
+        Rules include virtual patches, rate limits, and custom detection rules.
+      tags:
+        - Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of rules returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleListResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/hint/create:
+    post:
+      operationId: createRule
+      summary: Create Security Rule
+      description: >-
+        Create a new security rule such as a virtual patch to block specific
+        attack vectors on defined path patterns.
+      tags:
+        - Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRuleRequest'
+      responses:
+        '200':
+          description: Rule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/objects/hint/delete:
+    post:
+      operationId: deleteRule
+      summary: Delete Security Rule
+      description: Delete an existing security rule by its ID.
+      tags:
+        - Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteRuleRequest'
+      responses:
+        '200':
+          description: Rule deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Rule not found
+  /v1/objects/action:
+    post:
+      operationId: listRuleConditions
+      summary: List Rule Conditions
+      description: Retrieve the conditions associated with configured security rules.
+      tags:
+        - Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: Rule conditions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionListResponse'
+        '401':
+          description: Unauthorized
+  /v4/ip_rules:
+    get:
+      operationId: listIpRules
+      summary: List IP Rules
+      description: >-
+        Retrieve the contents of IP lists (allowlist, denylist, graylist).
+        Returns up to 300 items per request. Use offset parameter for
+        pagination.
+      tags:
+        - IP Lists
+      parameters:
+        - name: clientid
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Client ID
+        - name: list
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - allowlist
+              - denylist
+              - graylist
+          description: Filter by list type
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 300
+            maximum: 300
+          description: Number of items to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      responses:
+        '200':
+          description: IP rules returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpRuleListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: addIpRule
+      summary: Add IP Rule
+      description: >-
+        Add an IP address, subnet, country, or proxy service to an IP list
+        (allowlist, denylist, or graylist).
+      tags:
+        - IP Lists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIpRuleRequest'
+      responses:
+        '200':
+          description: IP rule added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpRuleResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+    delete:
+      operationId: deleteIpRule
+      summary: Delete IP Rule
+      description: Remove an IP rule from an IP list by its ID.
+      tags:
+        - IP Lists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteIpRuleRequest'
+      responses:
+        '200':
+          description: IP rule deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: IP rule not found
+  /v1/objects/node:
+    post:
+      operationId: listNodes
+      summary: List Filter Nodes
+      description: Retrieve all Wallarm filter nodes registered to the client account.
+      tags:
+        - Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of filter nodes returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeListResponse'
+        '401':
+          description: Unauthorized
+  /v2/node:
+    post:
+      operationId: createNode
+      summary: Create Filter Node
+      description: Register a new Wallarm filter node with the platform.
+      tags:
+        - Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNodeRequest'
+      responses:
+        '200':
+          description: Node created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/objects/integration:
+    post:
+      operationId: listIntegrations
+      summary: List Integrations
+      description: >-
+        Retrieve all configured third-party integrations (Slack, PagerDuty,
+        Splunk, Jira, etc.).
+      tags:
+        - Integrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of integrations returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationListResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/trigger:
+    post:
+      operationId: listTriggers
+      summary: List Triggers
+      description: Retrieve all configured automated triggers and alert conditions.
+      tags:
+        - Triggers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of triggers returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerListResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/trigger/create:
+    post:
+      operationId: createTrigger
+      summary: Create Trigger
+      description: >-
+        Create a new automated trigger that fires based on security events
+        such as attack thresholds or new vulnerability detection.
+      tags:
+        - Triggers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTriggerRequest'
+      responses:
+        '200':
+          description: Trigger created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/objects/application:
+    post:
+      operationId: listApplications
+      summary: List Applications
+      description: Retrieve all applications and scopes configured in the Wallarm account.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of applications returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    ApiTokenAuth:
+      type: apiKey
+      in: header
+      name: X-WallarmApi-Token
+      description: >-
+        API token obtained from Wallarm Console under Settings → API Tokens.
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        body:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: User ID
+            email:
+              type: string
+              description: User email address
+            client_id:
+              type: integer
+              description: Client ID for multi-tenant API calls
+            name:
+              type: string
+              description: User display name
+            role:
+              type: string
+              description: User role (admin, analyst, etc.)
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
+    PaginatedQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 100
+          description: Maximum number of results per page
+        paging:
+          type: boolean
+          default: true
+          description: Enable cursor-based pagination
+        cursor:
+          type: string
+          description: Cursor for fetching next page of results
+    VulnQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - active
+                - fixed
+                - false_positive
+              description: Vulnerability status filter
+            time:
+              type: array
+              items:
+                type: integer
+              description: Time range as Unix timestamps [start, end]
+        limit:
+          type: integer
+          default: 50
+    Attack:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique attack identifier
+        type:
+          type: string
+          description: Attack type (sqli, xss, rce, etc.)
+        time:
+          type: integer
+          description: Unix timestamp of attack
+        domain:
+          type: string
+          description: Target domain
+        path:
+          type: string
+          description: Target URL path
+        method:
+          type: string
+          description: HTTP method
+        parameter:
+          type: string
+          description: Attacked parameter
+        status:
+          type: integer
+          description: HTTP response status code
+        hits:
+          type: integer
+          description: Number of hit requests in this attack
+    AttackListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attack'
+    PaginatedAttackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Attack'
+            cursor:
+              type: string
+              description: Cursor for fetching the next page
+    Vulnerability:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique vulnerability identifier
+        type:
+          type: string
+          description: Vulnerability type (sqli, xss, rce, etc.)
+        status:
+          type: string
+          enum:
+            - active
+            - fixed
+            - false_positive
+        domain:
+          type: string
+          description: Affected domain
+        path:
+          type: string
+          description: Affected URL path
+        method:
+          type: string
+          description: HTTP method
+        parameter:
+          type: string
+          description: Vulnerable parameter
+        description:
+          type: string
+          description: Vulnerability description
+        discovered:
+          type: integer
+          description: Unix timestamp when vulnerability was discovered
+        severity:
+          type: string
+          enum:
+            - critical
+            - high
+            - medium
+            - low
+          description: Vulnerability severity level
+    VulnListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+    Rule:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Rule identifier
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
+          type: object
+          description: Rule conditions and scope
+        point:
+          type: array
+          description: Attack point specification
+        enabled:
+          type: boolean
+          description: Whether the rule is currently active
+        created:
+          type: integer
+          description: Unix timestamp of rule creation
+    RuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+    RuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Rule'
+    CreateRuleRequest:
+      type: object
+      required:
+        - type
+        - action
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
+          type: array
+          description: Rule conditions (domain, path, application)
+          items:
+            type: object
+        point:
+          type: array
+          description: Attack vector specification
+        enabled:
+          type: boolean
+          default: true
+    DeleteRuleRequest:
+      type: object
+      required:
+        - id
+        - clientid
+      properties:
+        id:
+          type: integer
+          description: Rule ID to delete
+        clientid:
+          type: integer
+          description: Client ID
+    ActionListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            type: object
+    IpRule:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: IP rule identifier
+        rule_type:
+          type: string
+          enum:
+            - ip_range
+            - country
+            - proxy_type
+          description: Type of IP rule
+        list:
+          type: string
+          enum:
+            - allowlist
+            - denylist
+            - graylist
+          description: Which IP list this rule belongs to
+        subnet:
+          type: string
+          description: IP address or CIDR subnet (for ip_range type)
+        country_iso:
+          type: string
+          description: ISO 3166 country code (for country type)
+        source:
+          type: string
+          description: Proxy/threat type (for proxy_type)
+        expired_at:
+          type: integer
+          description: Unix timestamp when rule expires (null = permanent)
+        created_at:
+          type: integer
+          description: Unix timestamp of creation
+    IpRuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpRule'
+    IpRuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/IpRule'
+    CreateIpRuleRequest:
+      type: object
+      required:
+        - rule_type
+        - pools
+        - clientid
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        rule_type:
+          type: string
+          enum:
+            - ip_range
+            - country
+            - proxy_type
+          description: Type of IP rule to create
+        subnet:
+          type: string
+          description: IP address or CIDR notation (for ip_range)
+        source_values:
+          type: array
+          items:
+            type: string
+          description: Country codes (ISO 3166) or proxy types
+        pools:
+          type: array
+          items:
+            type: string
+            enum:
+              - allowlist
+              - denylist
+              - graylist
+          description: Target IP list(s)
+        expired_at:
+          type: integer
+          description: Unix timestamp when rule expires
+    DeleteIpRuleRequest:
+      type: object
+      required:
+        - id
+        - clientid
+      properties:
+        id:
+          type: integer
+          description: IP rule ID to delete
+        clientid:
+          type: integer
+          description: Client ID
+    Node:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Node identifier
+        hostname:
+          type: string
+          description: Node hostname
+        ip:
+          type: string
+          description: Node IP address
+        status:
+          type: string
+          description: Node status (active, inactive)
+        type:
+          type: string
+          description: Node type
+        version:
+          type: string
+          description: Wallarm node version
+        last_activity:
+          type: integer
+          description: Unix timestamp of last activity
+    NodeListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+    NodeResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Node'
+    CreateNodeRequest:
+      type: object
+      required:
+        - hostname
+        - type
+      properties:
+        hostname:
+          type: string
+          description: Node hostname
+        type:
+          type: string
+          description: Node type
+        clientid:
+          type: integer
+          description: Client ID
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Integration identifier
+        name:
+          type: string
+          description: Integration name
+        type:
+          type: string
+          description: Integration type (slack, pagerduty, splunk, etc.)
+        enabled:
+          type: boolean
+          description: Whether integration is active
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    IntegrationListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
+    Trigger:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trigger identifier
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          description: Whether trigger is active
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Trigger conditions
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to perform when trigger fires
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    TriggerListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trigger'
+    TriggerResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Trigger'
+    CreateTriggerRequest:
+      type: object
+      required:
+        - name
+        - conditions
+        - actions
+      properties:
+        clientid:
+          type: integer
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          default: true
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Conditions that activate the trigger
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to execute when conditions are met
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Application identifier
+        name:
+          type: string
+          description: Application name
+        domain:
+          type: string
+          description: Application domain
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    ApplicationListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'

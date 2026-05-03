@@ -1,0 +1,176 @@
+vocabulary:
+  name: Wallarm API Security Vocabulary
+  description: >-
+    Core vocabulary and taxonomy for the Wallarm API Security Platform,
+    covering attack types, vulnerability classifications, security rule types,
+    IP list categories, node types, and integration classifications.
+  version: "1.0.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+terms:
+  # Attack Types
+  - term: sqli
+    label: SQL Injection
+    category: Attack Type
+    description: >-
+      An injection attack that inserts malicious SQL code into a query,
+      allowing attackers to access or manipulate database content.
+
+  - term: xss
+    label: Cross-Site Scripting
+    category: Attack Type
+    description: >-
+      An attack where malicious scripts are injected into web pages viewed
+      by other users, bypassing access controls.
+
+  - term: rce
+    label: Remote Code Execution
+    category: Attack Type
+    description: >-
+      An attack that allows the execution of arbitrary code on a remote machine,
+      typically through a vulnerability in the application.
+
+  - term: lfi
+    label: Local File Inclusion
+    category: Attack Type
+    description: >-
+      An attack that exploits insufficient input validation to include files
+      from the server's local filesystem.
+
+  - term: ssrf
+    label: Server-Side Request Forgery
+    category: Attack Type
+    description: >-
+      An attack that forces the server to make requests to internal resources,
+      bypassing network access controls.
+
+  - term: xxe
+    label: XML External Entity
+    category: Attack Type
+    description: >-
+      An attack against XML parsers that allows disclosure of internal files,
+      internal network scanning, and remote code execution.
+
+  - term: vpatch
+    label: Virtual Patch
+    category: Attack Type
+    description: >-
+      A temporary security fix applied at the WAF level to block exploitation
+      of a known vulnerability without modifying the application code.
+
+  # Vulnerability Statuses
+  - term: active
+    label: Active
+    category: Vulnerability Status
+    description: Vulnerability has been detected and has not yet been remediated.
+
+  - term: fixed
+    label: Fixed
+    category: Vulnerability Status
+    description: Vulnerability has been remediated and confirmed no longer exploitable.
+
+  - term: false_positive
+    label: False Positive
+    category: Vulnerability Status
+    description: Detection was marked as a false positive and will not be re-reported.
+
+  # Severity Levels
+  - term: critical
+    label: Critical
+    category: Severity
+    description: >-
+      Vulnerability has the highest risk impact, often enabling full system
+      compromise. Requires immediate remediation.
+
+  - term: high
+    label: High
+    category: Severity
+    description: >-
+      Vulnerability with significant risk, potentially enabling data breach or
+      service disruption.
+
+  - term: medium
+    label: Medium
+    category: Severity
+    description: >-
+      Vulnerability with moderate risk requiring timely but not emergency remediation.
+
+  - term: low
+    label: Low
+    category: Severity
+    description: >-
+      Vulnerability with minimal risk, typically informational or requiring
+      specific conditions to exploit.
+
+  # IP List Types
+  - term: allowlist
+    label: Allowlist
+    category: IP List Type
+    description: >-
+      List of IP addresses/ranges that are trusted and exempt from security
+      filtering even if their requests match attack patterns.
+
+  - term: denylist
+    label: Denylist
+    category: IP List Type
+    description: >-
+      List of IP addresses/ranges that are blocked from accessing protected
+      applications entirely.
+
+  - term: graylist
+    label: Graylist
+    category: IP List Type
+    description: >-
+      List of IP addresses/ranges that trigger additional scrutiny. Traffic
+      is allowed unless it matches attack signatures.
+
+  # Rule Types
+  - term: vpatch
+    label: Virtual Patch
+    category: Rule Type
+    description: >-
+      A security rule that blocks requests matching specific attack patterns
+      to a defined path, acting as a virtual fix for known vulnerabilities.
+
+  - term: regex
+    label: Regular Expression Rule
+    category: Rule Type
+    description: >-
+      A security rule using regular expression patterns to detect and block
+      specific attack vectors.
+
+  # Node Types
+  - term: wallarm-node
+    label: Wallarm Node
+    category: Infrastructure
+    description: >-
+      A Wallarm filtering proxy deployed in-line with application traffic to
+      perform real-time analysis and blocking.
+
+  # Cloud Regions
+  - term: us-cloud
+    label: US Cloud
+    category: Deployment Region
+    description: Wallarm cloud infrastructure hosted in the United States (us1.api.wallarm.com).
+
+  - term: eu-cloud
+    label: EU Cloud
+    category: Deployment Region
+    description: Wallarm cloud infrastructure hosted in the European Union (api.wallarm.com).
+
+categories:
+  - name: Attack Type
+    description: Classifications for types of attacks detected by Wallarm
+  - name: Vulnerability Status
+    description: Lifecycle states for tracked vulnerabilities
+  - name: Severity
+    description: Risk severity levels for vulnerabilities
+  - name: IP List Type
+    description: Categories of IP address lists used for access control
+  - name: Rule Type
+    description: Types of security rules configurable in Wallarm
+  - name: Infrastructure
+    description: Wallarm infrastructure components
+  - name: Deployment Region
+    description: Geographic cloud regions for Wallarm deployment

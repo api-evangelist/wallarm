@@ -1,0 +1,296 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Wallarm API Security Operations"
+  description: >-
+    Unified workflow for API security operations using the Wallarm platform.
+    Enables security teams to monitor attacks, investigate vulnerabilities,
+    manage IP blocklists, configure security rules, and coordinate incident
+    response workflows across API infrastructure.
+  tags:
+    - API Security
+    - Attack Detection
+    - Vulnerability Management
+    - Incident Response
+    - WAF
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WALLARM_API_TOKEN: WALLARM_API_TOKEN
+
+capability:
+  consumes:
+    - import: wallarm
+      location: ./shared/wallarm-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wallarm-security-api
+      description: "Unified REST API for Wallarm API security operations."
+      resources:
+        - path: /v1/attacks
+          name: attacks
+          description: Detected attack data
+          operations:
+            - method: GET
+              name: list-attacks
+              description: List security attacks detected by Wallarm
+              call: "wallarm.list-attacks"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/vulnerabilities
+          name: vulnerabilities
+          description: Detected vulnerability data
+          operations:
+            - method: GET
+              name: list-vulnerabilities
+              description: List vulnerabilities detected across APIs
+              call: "wallarm.list-vulnerabilities"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/rules
+          name: rules
+          description: Security rule management
+          operations:
+            - method: GET
+              name: list-rules
+              description: List configured security rules and virtual patches
+              call: "wallarm.list-rules"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-rule
+              description: Create a new security rule or virtual patch
+              call: "wallarm.create-rule"
+              with:
+                clientid: "rest.clientid"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-rule
+              description: Delete a security rule by ID
+              call: "wallarm.delete-rule"
+              with:
+                id: "rest.id"
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/ip-rules
+          name: ip-rules
+          description: IP list management (allowlist, denylist, graylist)
+          operations:
+            - method: GET
+              name: list-ip-rules
+              description: List IP rules from all IP lists
+              call: "wallarm.list-ip-rules"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: add-ip-rule
+              description: Add an IP or subnet to a blocklist or allowlist
+              call: "wallarm.add-ip-rule"
+              with:
+                clientid: "rest.clientid"
+                rule_type: "rest.rule_type"
+                pools: "rest.pools"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-ip-rule
+              description: Remove an IP rule from a list
+              call: "wallarm.delete-ip-rule"
+              with:
+                id: "rest.id"
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/nodes
+          name: nodes
+          description: Wallarm filter node inventory
+          operations:
+            - method: GET
+              name: list-nodes
+              description: List all deployed Wallarm filter nodes
+              call: "wallarm.list-nodes"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/integrations
+          name: integrations
+          description: Third-party security integrations
+          operations:
+            - method: GET
+              name: list-integrations
+              description: List configured SIEM and notification integrations
+              call: "wallarm.list-integrations"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/triggers
+          name: triggers
+          description: Automated alert triggers
+          operations:
+            - method: GET
+              name: list-triggers
+              description: List configured automated security triggers
+              call: "wallarm.list-triggers"
+              with:
+                clientid: "rest.clientid"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wallarm-security-mcp
+      transport: http
+      description: "MCP server for AI-assisted API security monitoring and response."
+      tools:
+        - name: list-attacks
+          description: List security attacks detected by Wallarm across API infrastructure
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wallarm.list-attacks"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-vulnerabilities
+          description: List vulnerabilities detected across monitored APIs
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wallarm.list-vulnerabilities"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-rules
+          description: List all configured security rules and virtual patches
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wallarm.list-rules"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-security-rule
+          description: Create a virtual patch or custom security rule to block an attack vector
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wallarm.create-rule"
+          with:
+            clientid: "tools.clientid"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-ip-rules
+          description: List all entries in Wallarm IP allowlists, denylists, and graylists
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wallarm.list-ip-rules"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: block-ip-address
+          description: Add an IP address or subnet to the denylist
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wallarm.add-ip-rule"
+          with:
+            clientid: "tools.clientid"
+            rule_type: "tools.rule_type"
+            pools: "tools.pools"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: remove-ip-block
+          description: Remove an IP address or subnet from a blocklist
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "wallarm.delete-ip-rule"
+          with:
+            id: "tools.id"
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-nodes
+          description: List all Wallarm filter nodes deployed in the environment
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wallarm.list-nodes"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-integrations
+          description: List configured SIEM and notification integrations
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wallarm.list-integrations"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-triggers
+          description: List automated security alert triggers
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wallarm.list-triggers"
+          with:
+            clientid: "tools.clientid"
+          outputParameters:
+            - type: object
+              mapping: "$."

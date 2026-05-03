@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://us1.api.wallarm.com/v4/ip_rules",
+    "headers": {
+      "X-WallarmApi-Token": "YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "clientid": 12345,
+      "rule_type": "ip_range",
+      "subnet": "198.51.100.0/24",
+      "pools": ["denylist"],
+      "expired_at": 1717372800
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": 200,
+      "body": {
+        "id": 7001,
+        "rule_type": "ip_range",
+        "list": "denylist",
+        "subnet": "198.51.100.0/24",
+        "expired_at": 1717372800,
+        "created_at": 1714790400
+      }
+    }
+  }
+}

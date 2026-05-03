@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://us1.api.wallarm.com/v1/objects/attack",
+    "headers": {
+      "X-WallarmApi-Token": "YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "clientid": 12345,
+      "filter": {
+        "time": [1714704000, 1714790400]
+      },
+      "limit": 50,
+      "offset": 0,
+      "order_by": "time",
+      "order_desc": true
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": 200,
+      "body": [
+        {
+          "id": "attack-001",
+          "type": "sqli",
+          "time": 1714776000,
+          "domain": "api.example.com",
+          "path": "/v1/users",
+          "method": "GET",
+          "parameter": "id",
+          "status": 403,
+          "hits": 3
+        },
+        {
+          "id": "attack-002",
+          "type": "xss",
+          "time": 1714772400,
+          "domain": "api.example.com",
+          "path": "/v1/search",
+          "method": "POST",
+          "parameter": "query",
+          "status": 403,
+          "hits": 1
+        }
+      ]
+    }
+  }
+}

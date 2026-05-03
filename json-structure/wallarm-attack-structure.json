@@ -1,0 +1,62 @@
+{
+  "title": "Wallarm Attack Structure",
+  "description": "Documentation of the data structure for Wallarm attack objects.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Unique attack identifier",
+      "required": true
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["sqli", "xss", "rce", "lfi", "ptrav", "crlf", "redir", "nosqli", "xxe", "ssrf"],
+      "description": "Attack type classification",
+      "required": true
+    },
+    {
+      "name": "time",
+      "type": "integer",
+      "description": "Unix timestamp of attack detection",
+      "required": true
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "description": "Target domain"
+    },
+    {
+      "name": "path",
+      "type": "string",
+      "description": "Target URL path"
+    },
+    {
+      "name": "method",
+      "type": "enum",
+      "values": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+      "description": "HTTP method used"
+    },
+    {
+      "name": "parameter",
+      "type": "string",
+      "description": "Attacked request parameter"
+    },
+    {
+      "name": "status",
+      "type": "integer",
+      "description": "HTTP response status returned"
+    },
+    {
+      "name": "hits",
+      "type": "integer",
+      "description": "Number of attack requests grouped together"
+    },
+    {
+      "name": "blocked",
+      "type": "boolean",
+      "description": "Whether the attack was blocked"
+    }
+  ]
+}

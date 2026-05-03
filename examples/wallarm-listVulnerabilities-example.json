@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://us1.api.wallarm.com/v1/objects/vuln",
+    "headers": {
+      "X-WallarmApi-Token": "YOUR_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "clientid": 12345,
+      "filter": {
+        "status": "active",
+        "time": [1714704000, 1714790400]
+      },
+      "limit": 50,
+      "offset": 0
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": 200,
+      "body": [
+        {
+          "id": 9001,
+          "type": "sqli",
+          "status": "active",
+          "domain": "api.example.com",
+          "path": "/v1/products",
+          "method": "GET",
+          "parameter": "category",
+          "description": "SQL injection vulnerability in category parameter",
+          "discovered": 1714776000,
+          "severity": "high"
+        }
+      ]
+    }
+  }
+}

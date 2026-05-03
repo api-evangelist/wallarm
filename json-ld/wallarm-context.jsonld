@@ -1,0 +1,75 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "wallarm": "https://docs.wallarm.com/api/#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Attack": "wallarm:Attack",
+    "Vulnerability": "wallarm:Vulnerability",
+    "SecurityRule": "wallarm:SecurityRule",
+    "IpRule": "wallarm:IpRule",
+    "FilterNode": "wallarm:FilterNode",
+    "Integration": "wallarm:Integration",
+    "Trigger": "wallarm:Trigger",
+
+    "id": "@id",
+    "type": "@type",
+    "attackType": {
+      "@id": "wallarm:attackType",
+      "@type": "xsd:string"
+    },
+    "detectedAt": {
+      "@id": "wallarm:detectedAt",
+      "@type": "xsd:dateTime"
+    },
+    "domain": {
+      "@id": "schema:domainIncludes",
+      "@type": "xsd:string"
+    },
+    "path": {
+      "@id": "wallarm:path",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "wallarm:httpMethod",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "wallarm:httpStatus",
+      "@type": "xsd:integer"
+    },
+    "severity": {
+      "@id": "wallarm:severity",
+      "@type": "xsd:string"
+    },
+    "blocked": {
+      "@id": "wallarm:blocked",
+      "@type": "xsd:boolean"
+    },
+    "ruleType": {
+      "@id": "wallarm:ruleType",
+      "@type": "xsd:string"
+    },
+    "ipList": {
+      "@id": "wallarm:ipList",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "wallarm:enabled",
+      "@type": "xsd:boolean"
+    },
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "hostname": {
+      "@id": "schema:hostName",
+      "@type": "xsd:string"
+    },
+    "integrationProvider": {
+      "@id": "wallarm:integrationProvider",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/wallarm/blob/main/json-schema/wallarm-attack-schema.json",
+  "title": "Wallarm Attack",
+  "description": "Schema for a Wallarm-detected security attack on a monitored API or web application.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the attack"
+    },
+    "type": {
+      "type": "string",
+      "description": "Attack type classification",
+      "enum": ["sqli", "xss", "rce", "lfi", "ptrav", "crlf", "redir", "nosqli", "xxe", "ssrf", "overlimit_res", "vpatch"]
+    },
+    "time": {
+      "type": "integer",
+      "description": "Unix timestamp when attack was detected"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Target domain of the attack"
+    },
+    "path": {
+      "type": "string",
+      "description": "Target URL path"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method used in the attack",
+      "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
+    },
+    "parameter": {
+      "type": "string",
+      "description": "The attacked request parameter"
+    },
+    "status": {
+      "type": "integer",
+      "description": "HTTP response status code returned"
+    },
+    "hits": {
+      "type": "integer",
+      "description": "Number of attack requests in this attack group",
+      "minimum": 1
+    },
+    "blocked": {
+      "type": "boolean",
+      "description": "Whether the attack was blocked by Wallarm"
+    }
+  },
+  "required": ["id", "type", "time"]
+}

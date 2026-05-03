@@ -1,49 +1,93 @@
-# Wallarm (wallarm)
-Wallarm provides advanced API security and protection solutions for APIs, web applications, and microservices. The platform includes API discovery, real-time attack protection, vulnerability testing, and an open-source API Firewall that enforces OpenAPI specifications as a positive security model.
+# Wallarm
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/wallarm/refs/heads/main/apis.yml)
+Wallarm provides advanced API security and protection solutions for APIs, web applications, and microservices. The platform includes API discovery, real-time attack protection, vulnerability testing, and an open-source API Firewall that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud environments, and as an NGINX-based proxy.
 
-## Scope
-
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
-
-## Tags:
-
- - Security, Discovery, Platform
-
-## Timestamps
-
-- **Created:** 2025-01-08 
-- **Modified:** 2026-03-16 
+- **Website:** [https://www.wallarm.com/](https://www.wallarm.com/)
+- **Documentation:** [https://docs.wallarm.com/](https://docs.wallarm.com/)
+- **API Reference:** [https://docs.wallarm.com/api/overview/](https://docs.wallarm.com/api/overview/)
+- **GitHub:** [https://github.com/wallarm](https://github.com/wallarm)
 
 ## APIs
 
-### Wallarm API Security Platform
-Wallarm provides advanced API security solutions including real-time application protection, API discovery, vulnerability testing, and an API Firewall based on OpenAPI specifications. It automates protection for APIs, apps, and microservices across multi-cloud and Kubernetes environments.
+### Wallarm API
 
-**Human URL:** [https://docs.wallarm.com/](https://docs.wallarm.com/)
+Programmatic access to the Wallarm API Security Platform for managing attacks, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers.
 
+- **Base URL:** `https://us1.api.wallarm.com` (US Cloud), `https://api.wallarm.com` (EU Cloud)
+- **Authentication:** API Token (`X-WallarmApi-Token` header)
+- **Console:** [US Cloud](https://apiconsole.us1.wallarm.com/) | [EU Cloud](https://apiconsole.eu1.wallarm.com/)
 
-#### Tags:
+## Artifacts
 
- - API Security, WAF, Security Testing
+### OpenAPI Specifications
 
-#### Properties
+| Spec | Description |
+|------|-------------|
+| [wallarm-openapi.yml](openapi/wallarm-openapi.yml) | Wallarm API — attacks, vulnerabilities, rules, IP lists, nodes, integrations, triggers |
 
-- [Documentation](https://docs.wallarm.com/)
-- [Reference](https://docs.wallarm.com/about-wallarm/api-protection-overview/)
+### Spectral Rules
 
-## Common Properties
+| Ruleset | Description |
+|---------|-------------|
+| [wallarm-rules.yml](rules/wallarm-rules.yml) | Spectral ruleset enforcing Wallarm API conventions |
 
-- [Website](https://www.wallarm.com/)
-- [Documentation](https://docs.wallarm.com/)
-- [GitHubOrganization](https://github.com/wallarm)
-- [Documentation](https://wallarm.github.io/api-firewall/)
+### Naftiko Capabilities
+
+#### Shared Per-API Definitions
+
+| File | Description |
+|------|-------------|
+| [capabilities/shared/wallarm-api.yaml](capabilities/shared/wallarm-api.yaml) | Wallarm API consumed definition |
+
+#### Workflow Capabilities
+
+| Workflow | Description | Tools |
+|----------|-------------|-------|
+| [api-security-operations.yaml](capabilities/api-security-operations.yaml) | Unified API security monitoring, attack response, vulnerability management, IP list management | 10 tools |
+
+### JSON Schemas
+
+| Schema | Description |
+|--------|-------------|
+| [wallarm-attack-schema.json](json-schema/wallarm-attack-schema.json) | Schema for Wallarm attack objects |
+| [wallarm-vulnerability-schema.json](json-schema/wallarm-vulnerability-schema.json) | Schema for Wallarm vulnerability objects |
+
+### JSON Structures
+
+| Structure | Description |
+|-----------|-------------|
+| [wallarm-attack-structure.json](json-structure/wallarm-attack-structure.json) | Attack data structure documentation |
+
+### JSON-LD Contexts
+
+| Context | Description |
+|---------|-------------|
+| [wallarm-context.jsonld](json-ld/wallarm-context.jsonld) | JSON-LD context for Wallarm security entities |
+
+### Examples
+
+| Example | Description |
+|---------|-------------|
+| [wallarm-listAttacks-example.json](examples/wallarm-listAttacks-example.json) | List attacks request/response example |
+| [wallarm-listVulnerabilities-example.json](examples/wallarm-listVulnerabilities-example.json) | List vulnerabilities request/response example |
+| [wallarm-addIpRule-example.json](examples/wallarm-addIpRule-example.json) | Add IP denylist rule request/response example |
+
+### Vocabulary
+
+| File | Description |
+|------|-------------|
+| [wallarm-vocabulary.yml](vocabulary/wallarm-vocabulary.yml) | Wallarm API security vocabulary and taxonomy |
+
+## SDKs and Tools
+
+- **Go SDK:** [github.com/wallarm/wallarm-go](https://github.com/wallarm/wallarm-go)
+- **Terraform Provider:** [github.com/wallarm/terraform-provider-wallarm](https://github.com/wallarm/terraform-provider-wallarm)
+- **Terraform AWS Module:** [github.com/wallarm/terraform-aws-wallarm](https://github.com/wallarm/terraform-aws-wallarm)
+- **Kubernetes Ingress:** [github.com/wallarm/ingress](https://github.com/wallarm/ingress)
+- **Helm Charts:** [github.com/wallarm/helm-charts](https://github.com/wallarm/helm-charts)
+- **API Firewall:** [github.com/wallarm/api-firewall](https://github.com/wallarm/api-firewall)
+- **GoTestWAF:** [github.com/wallarm/gotestwaf](https://github.com/wallarm/gotestwaf)
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+**Kin Lane** — [kin@apievangelist.com](mailto:kin@apievangelist.com)
