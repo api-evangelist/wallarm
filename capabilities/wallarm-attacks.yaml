@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wallarm API — Attacks
+  description: 'Wallarm API — Attacks. 2 operations. Lead operation: List Attacks. Self-contained Naftiko capability covering
+    one Wallarm business surface.'
+  tags:
+  - Wallarm
+  - Attacks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WALLARM_API_KEY: WALLARM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wallarm-attacks
+    baseUri: https://us1.api.wallarm.com
+    description: Wallarm API — Attacks business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-objects-attack
+      path: /v1/objects/attack
+      operations:
+      - name: listattacks
+        method: POST
+        description: List Attacks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-objects-attack
+      path: /v2/objects/attack
+      operations:
+      - name: listattackspaginated
+        method: POST
+        description: List Attacks (Paginated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-WallarmApi-Token
+      value: '{{env.WALLARM_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wallarm-attacks-rest
+    port: 8080
+    description: REST adapter for Wallarm API — Attacks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/objects/attack
+      name: v1-objects-attack
+      description: REST surface for v1-objects-attack.
+      operations:
+      - method: POST
+        name: listattacks
+        description: List Attacks
+        call: wallarm-attacks.listattacks
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/objects/attack
+      name: v2-objects-attack
+      description: REST surface for v2-objects-attack.
+      operations:
+      - method: POST
+        name: listattackspaginated
+        description: List Attacks (Paginated)
+        call: wallarm-attacks.listattackspaginated
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wallarm-attacks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wallarm API — Attacks. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-attacks
+      description: List Attacks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: wallarm-attacks.listattacks
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-attacks-paginated
+      description: List Attacks (Paginated)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: wallarm-attacks.listattackspaginated
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

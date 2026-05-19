@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wallarm API — User
+  description: 'Wallarm API — User. 1 operations. Lead operation: Get User Details. Self-contained Naftiko capability covering
+    one Wallarm business surface.'
+  tags:
+  - Wallarm
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WALLARM_API_KEY: WALLARM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wallarm-user
+    baseUri: https://us1.api.wallarm.com
+    description: Wallarm API — User business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-user
+      path: /v1/user
+      operations:
+      - name: getuser
+        method: POST
+        description: Get User Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: X-WallarmApi-Token
+      value: '{{env.WALLARM_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wallarm-user-rest
+    port: 8080
+    description: REST adapter for Wallarm API — User. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/user
+      name: v1-user
+      description: REST surface for v1-user.
+      operations:
+      - method: POST
+        name: getuser
+        description: Get User Details
+        call: wallarm-user.getuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wallarm-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wallarm API — User. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-user-details
+      description: Get User Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: wallarm-user.getuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

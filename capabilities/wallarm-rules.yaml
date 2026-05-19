@@ -1,0 +1,208 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wallarm API — Rules
+  description: 'Wallarm API — Rules. 4 operations. Lead operation: List Rule Conditions. Self-contained Naftiko capability
+    covering one Wallarm business surface.'
+  tags:
+  - Wallarm
+  - Rules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WALLARM_API_KEY: WALLARM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wallarm-rules
+    baseUri: https://us1.api.wallarm.com
+    description: Wallarm API — Rules business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-objects-action
+      path: /v1/objects/action
+      operations:
+      - name: listruleconditions
+        method: POST
+        description: List Rule Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-objects-hint
+      path: /v1/objects/hint
+      operations:
+      - name: listrules
+        method: POST
+        description: List Security Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-objects-hint-create
+      path: /v1/objects/hint/create
+      operations:
+      - name: createrule
+        method: POST
+        description: Create Security Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-objects-hint-delete
+      path: /v1/objects/hint/delete
+      operations:
+      - name: deleterule
+        method: POST
+        description: Delete Security Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-WallarmApi-Token
+      value: '{{env.WALLARM_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wallarm-rules-rest
+    port: 8080
+    description: REST adapter for Wallarm API — Rules. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/v1/objects/action
+      name: v1-objects-action
+      description: REST surface for v1-objects-action.
+      operations:
+      - method: POST
+        name: listruleconditions
+        description: List Rule Conditions
+        call: wallarm-rules.listruleconditions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/objects/hint
+      name: v1-objects-hint
+      description: REST surface for v1-objects-hint.
+      operations:
+      - method: POST
+        name: listrules
+        description: List Security Rules
+        call: wallarm-rules.listrules
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/objects/hint/create
+      name: v1-objects-hint-create
+      description: REST surface for v1-objects-hint-create.
+      operations:
+      - method: POST
+        name: createrule
+        description: Create Security Rule
+        call: wallarm-rules.createrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/objects/hint/delete
+      name: v1-objects-hint-delete
+      description: REST surface for v1-objects-hint-delete.
+      operations:
+      - method: POST
+        name: deleterule
+        description: Delete Security Rule
+        call: wallarm-rules.deleterule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wallarm-rules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wallarm API — Rules. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-rule-conditions
+      description: List Rule Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: wallarm-rules.listruleconditions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-security-rules
+      description: List Security Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: wallarm-rules.listrules
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-security-rule
+      description: Create Security Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: wallarm-rules.createrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-security-rule
+      description: Delete Security Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: wallarm-rules.deleterule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

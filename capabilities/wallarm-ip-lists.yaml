@@ -1,0 +1,170 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Wallarm API — IP Lists
+  description: 'Wallarm API — IP Lists. 3 operations. Lead operation: List IP Rules. Self-contained Naftiko capability covering
+    one Wallarm business surface.'
+  tags:
+  - Wallarm
+  - IP Lists
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WALLARM_API_KEY: WALLARM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: wallarm-ip-lists
+    baseUri: https://us1.api.wallarm.com
+    description: Wallarm API — IP Lists business capability. Self-contained, no shared references.
+    resources:
+    - name: v4-ip_rules
+      path: /v4/ip_rules
+      operations:
+      - name: listiprules
+        method: GET
+        description: List IP Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientid
+          in: query
+          type: integer
+          description: Client ID
+          required: true
+        - name: list
+          in: query
+          type: string
+          description: Filter by list type
+        - name: limit
+          in: query
+          type: integer
+          description: Number of items to return
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+      - name: addiprule
+        method: POST
+        description: Add IP Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteiprule
+        method: DELETE
+        description: Delete IP Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-WallarmApi-Token
+      value: '{{env.WALLARM_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: wallarm-ip-lists-rest
+    port: 8080
+    description: REST adapter for Wallarm API — IP Lists. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v4/ip-rules
+      name: v4-ip-rules
+      description: REST surface for v4-ip_rules.
+      operations:
+      - method: GET
+        name: listiprules
+        description: List IP Rules
+        call: wallarm-ip-lists.listiprules
+        with:
+          clientid: rest.clientid
+          list: rest.list
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addiprule
+        description: Add IP Rule
+        call: wallarm-ip-lists.addiprule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteiprule
+        description: Delete IP Rule
+        call: wallarm-ip-lists.deleteiprule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: wallarm-ip-lists-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Wallarm API — IP Lists. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-ip-rules
+      description: List IP Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: wallarm-ip-lists.listiprules
+      with:
+        clientid: tools.clientid
+        list: tools.list
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-ip-rule
+      description: Add IP Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: wallarm-ip-lists.addiprule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ip-rule
+      description: Delete IP Rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: wallarm-ip-lists.deleteiprule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
