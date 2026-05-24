@@ -120,6 +120,8 @@ common:
   - url: https://www.wallarm.com/product/integrations
     name: Wallarm Integrations
     type: Integrations
+  - type: LLMsTxt
+    url: https://docs.wallarm.com/llms.txt
 features:
   - API Discovery and Inventory
   - Real-Time Attack Detection and Blocking
