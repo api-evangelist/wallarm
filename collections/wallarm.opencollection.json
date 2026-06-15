@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wallarm API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-WallarmApi-Token",
+      "value": "{{X-WallarmApi-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve current user account details including the client ID required for subsequent API calls in multi-tenant environments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Attacks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/attack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of attacks detected by Wallarm. Supports filtering by time range, client ID, attack type, and other criteria."
+        },
+        {
+          "info": {
+            "name": "List Attacks (Paginated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v2/objects/attack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve attacks with cursor-based pagination, returning up to 100 records per page. Use the returned cursor to fetch subsequent pages."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vulnerabilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/vuln",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve detected vulnerabilities. Supports filtering by status, time range, and client ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all security rules (hints) configured for the client. Rules include virtual patches, rate limits, and custom detection rules."
+        },
+        {
+          "info": {
+            "name": "Create Security Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new security rule such as a virtual patch to block specific attack vectors on defined path patterns."
+        },
+        {
+          "info": {
+            "name": "Delete Security Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an existing security rule by its ID."
+        },
+        {
+          "info": {
+            "name": "List Rule Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve the conditions associated with configured security rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IP Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List IP Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "params": [
+              {
+                "name": "clientid",
+                "value": "",
+                "type": "query",
+                "description": "Client ID"
+              },
+              {
+                "name": "list",
+                "value": "",
+                "type": "query",
+                "description": "Filter by list type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Retrieve the contents of IP lists (allowlist, denylist, graylist). Returns up to 300 items per request. Use offset parameter for pagination."
+        },
+        {
+          "info": {
+            "name": "Add IP Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an IP address, subnet, country, or proxy service to an IP list (allowlist, denylist, or graylist)."
+        },
+        {
+          "info": {
+            "name": "Delete IP Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an IP rule from an IP list by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Nodes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Filter Nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/node",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all Wallarm filter nodes registered to the client account."
+        },
+        {
+          "info": {
+            "name": "Create Filter Node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v2/node",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new Wallarm filter node with the platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/integration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all configured third-party integrations (Slack, PagerDuty, Splunk, Jira, etc.)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/trigger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all configured automated triggers and alert conditions."
+        },
+        {
+          "info": {
+            "name": "Create Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/trigger/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new automated trigger that fires based on security events such as attack thresholds or new vulnerability detection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/application",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all applications and scopes configured in the Wallarm account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
