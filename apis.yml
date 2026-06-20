@@ -10,7 +10,7 @@ apis:
       - WAF
       - Rules
       - IP Management
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://us1.api.wallarm.com
     humanURL: https://docs.wallarm.com/api/overview/
     properties:
@@ -44,7 +44,7 @@ tags:
   - WAF
   - Cybersecurity
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-01-08'
 modified: '2026-05-19'
