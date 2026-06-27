@@ -83,7 +83,7 @@ common:
     type: OpenSource
   - url: https://github.com/wallarm/wallarm-go
     name: Wallarm Go SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/wallarm/terraform-provider-wallarm
     name: Wallarm Terraform Provider
     type: TerraformProvider
@@ -92,17 +92,17 @@ common:
     type: TerraformModule
   - url: https://github.com/wallarm/ingress
     name: Wallarm Kubernetes Ingress Controller
-    type: SDK
+    type: SDKs
   - url: https://github.com/wallarm/helm-charts
     name: Wallarm Helm Charts
     type: HelmChart
   - url: https://github.com/wallarm/gotestwaf
     name: GoTestWAF - WAF Security Testing Tool
-    type: Tool
+    type: Tools
   - url: https://www.wallarm.com/product/integrations
     name: Wallarm Integrations
     type: Integrations
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.wallarm.com/llms.txt
 features:
   - API Discovery and Inventory
