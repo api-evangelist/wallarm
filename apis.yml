@@ -55,6 +55,10 @@ description: >-
   that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud
   environments, and as an NGINX-based proxy.
 common:
+  - type: DomainSecurity
+    url: security/wallarm-domain-security.yml
+  - type: Authentication
+    url: authentication/wallarm-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/wallarm
   - url: https://www.wallarm.com/
@@ -81,6 +85,9 @@ common:
   - url: https://github.com/wallarm/api-firewall
     name: Wallarm API Firewall
     type: OpenSource
+  - url: https://lab.wallarm.com/feed/
+    name: Wallarm Lab Blog
+    type: Blog
   - url: https://github.com/wallarm/wallarm-go
     name: Wallarm Go SDK
     type: SDKs
