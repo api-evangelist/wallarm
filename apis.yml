@@ -55,6 +55,8 @@ description: >-
   that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud
   environments, and as an NGINX-based proxy.
 common:
+  - type: AgenticAccess
+    url: agentic-access/wallarm-agentic-access.yml
   - type: DomainSecurity
     url: security/wallarm-domain-security.yml
   - type: Authentication
