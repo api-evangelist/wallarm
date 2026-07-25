@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Wallarm Applications Triggers API
+  description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
+  version: 4.0.0
+  termsOfService: https://www.wallarm.com/terms-of-service
+  contact:
+    name: Wallarm Support
+    url: https://docs.wallarm.com/
+    email: support@wallarm.com
+  license:
+    name: Proprietary
+    url: https://www.wallarm.com/terms-of-service
+servers:
+- url: https://us1.api.wallarm.com
+  description: Wallarm US Cloud API
+- url: https://api.wallarm.com
+  description: Wallarm EU Cloud API
+security:
+- ApiTokenAuth: []
+tags:
+- name: Triggers
+  description: Automated trigger and alert management
+paths:
+  /v1/objects/trigger:
+    post:
+      operationId: listTriggers
+      summary: List Triggers
+      description: Retrieve all configured automated triggers and alert conditions.
+      tags:
+      - Triggers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of triggers returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerListResponse'
+        '401':
+          description: Unauthorized
+  /v1/objects/trigger/create:
+    post:
+      operationId: createTrigger
+      summary: Create Trigger
+      description: Create a new automated trigger that fires based on security events such as attack thresholds or new vulnerability detection.
+      tags:
+      - Triggers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTriggerRequest'
+      responses:
+        '200':
+          description: Trigger created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TriggerResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Trigger:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trigger identifier
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          description: Whether trigger is active
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Trigger conditions
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to perform when trigger fires
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    TriggerResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Trigger'
+    TriggerListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trigger'
+    CreateTriggerRequest:
+      type: object
+      required:
+      - name
+      - conditions
+      - actions
+      properties:
+        clientid:
+          type: integer
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          default: true
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Conditions that activate the trigger
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to execute when conditions are met
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
+  securitySchemes:
+    ApiTokenAuth:
+      type: apiKey
+      in: header
+      name: X-WallarmApi-Token
+      description: API token obtained from Wallarm Console under Settings → API Tokens.

@@ -1,0 +1,102 @@
+openapi: 3.0.3
+info:
+  title: Wallarm Applications API
+  description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
+  version: 4.0.0
+  termsOfService: https://www.wallarm.com/terms-of-service
+  contact:
+    name: Wallarm Support
+    url: https://docs.wallarm.com/
+    email: support@wallarm.com
+  license:
+    name: Proprietary
+    url: https://www.wallarm.com/terms-of-service
+servers:
+- url: https://us1.api.wallarm.com
+  description: Wallarm US Cloud API
+- url: https://api.wallarm.com
+  description: Wallarm EU Cloud API
+security:
+- ApiTokenAuth: []
+tags:
+- name: Applications
+  description: Application and scope management
+paths:
+  /v1/objects/application:
+    post:
+      operationId: listApplications
+      summary: List Applications
+      description: Retrieve all applications and scopes configured in the Wallarm account.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectQueryRequest'
+      responses:
+        '200':
+          description: List of applications returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Application identifier
+        name:
+          type: string
+          description: Application name
+        domain:
+          type: string
+          description: Application domain
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    ApplicationListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
+  securitySchemes:
+    ApiTokenAuth:
+      type: apiKey
+      in: header
+      name: X-WallarmApi-Token
+      description: API token obtained from Wallarm Console under Settings → API Tokens.
