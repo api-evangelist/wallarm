@@ -1,42 +1,240 @@
 aid: wallarm
 url: https://raw.githubusercontent.com/api-evangelist/wallarm/refs/heads/main/apis.yml
 apis:
-  - aid: wallarm:wallarm-api
-    name: Wallarm API
-    tags:
-      - API Security
-      - Attack Detection
-      - Vulnerability Management
-      - WAF
-      - Rules
-      - IP Management
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://us1.api.wallarm.com
-    humanURL: https://docs.wallarm.com/api/overview/
-    properties:
-      - url: https://docs.wallarm.com/api/overview/
-        type: Documentation
-      - url: https://apiconsole.us1.wallarm.com/
-        type: SwaggerUI
-      - url: https://apiconsole.eu1.wallarm.com/
-        type: SwaggerUI
-      - url: openapi/wallarm-openapi.yml
-        type: OpenAPI
-      - url: rules/wallarm-rules.yml
-        type: SpectralRules
-      - url: json-schema/wallarm-attack-schema.json
-        type: JSONSchema
-      - url: json-schema/wallarm-vulnerability-schema.json
-        type: JSONSchema
-      - url: json-ld/wallarm-context.jsonld
-        type: JSONLDContext
-      - url: vocabulary/wallarm-vocabulary.yml
-        type: Vocabulary
-    description: >-
-      The Wallarm API provides programmatic access to the Wallarm API Security Platform, enabling management of attacks,
-      incidents, vulnerabilities, rules, IP lists, filter nodes, users, and integrations. The API is available on both
-      the US Cloud (us1.api.wallarm.com) and EU Cloud (api.wallarm.com), and uses API token authentication via the
-      X-WallarmApi-Token header.
+- aid: wallarm:wallarm-applications-api
+  name: Wallarm Applications API
+  description: Application and scope management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-applications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-attacks-api
+  name: Wallarm Attacks API
+  description: Attack and incident data management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Attacks
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-attacks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-integrations-api
+  name: Wallarm Integrations API
+  description: Third-party integrations (SIEM, notifications, etc.)
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-ip-lists-api
+  name: Wallarm IP Lists API
+  description: IP allowlist, denylist, and graylist management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - IP Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-ip-lists-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-nodes-api
+  name: Wallarm Nodes API
+  description: Wallarm filter node management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Nodes
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-nodes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-rules-api
+  name: Wallarm Rules API
+  description: Security rules and virtual patch management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-rules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-triggers-api
+  name: Wallarm Triggers API
+  description: Automated trigger and alert management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-user-api
+  name: Wallarm User API
+  description: User account and authentication management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
+- aid: wallarm:wallarm-vulnerabilities-api
+  name: Wallarm Vulnerabilities API
+  description: Vulnerability detection and management
+  humanURL: https://docs.wallarm.com/api/overview/
+  baseURL: https://us1.api.wallarm.com
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/wallarm-vulnerabilities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.wallarm.com/api/overview/
+  - type: SwaggerUI
+    url: https://apiconsole.us1.wallarm.com/
+  - type: SwaggerUI
+    url: https://apiconsole.eu1.wallarm.com/
+  - type: SpectralRules
+    url: rules/wallarm-rules.yml
+  - type: JSONSchema
+    url: json-schema/wallarm-attack-schema.json
+  - type: JSONSchema
+    url: json-schema/wallarm-vulnerability-schema.json
+  - type: JSONLDContext
+    url: json-ld/wallarm-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/wallarm-vocabulary.yml
 name: Wallarm
 tags:
   - API Security
@@ -44,7 +242,20 @@ tags:
   - WAF
   - Cybersecurity
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/wallarm.png
 access: 3rd-Party
 created: '2025-01-08'
 modified: '2026-05-19'
