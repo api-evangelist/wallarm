@@ -1,0 +1,30 @@
+{
+  "provider": "wallarm",
+  "sources": [
+    "wallarm-applications-api-openapi.yml",
+    "wallarm-attacks-api-openapi.yml",
+    "wallarm-integrations-api-openapi.yml",
+    "wallarm-ip-lists-api-openapi.yml",
+    "wallarm-nodes-api-openapi.yml",
+    "wallarm-rules-api-openapi.yml",
+    "wallarm-triggers-api-openapi.yml",
+    "wallarm-user-api-openapi.yml",
+    "wallarm-vulnerabilities-api-openapi.yml"
+  ],
+  "outputs": [
+    "wallarm-applications-api-openapi.yml",
+    "wallarm-attacks-api-openapi.yml",
+    "wallarm-integrations-api-openapi.yml",
+    "wallarm-ip-lists-api-openapi.yml",
+    "wallarm-nodes-api-openapi.yml",
+    "wallarm-rules-api-openapi.yml",
+    "wallarm-triggers-api-openapi.yml",
+    "wallarm-user-api-openapi.yml",
+    "wallarm-vulnerabilities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
