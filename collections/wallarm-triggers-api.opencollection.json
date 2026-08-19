@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wallarm Applications Triggers API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-WallarmApi-Token",
+      "value": "{{X-WallarmApi-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/trigger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all configured automated triggers and alert conditions."
+        },
+        {
+          "info": {
+            "name": "Create Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/trigger/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new automated trigger that fires based on security events such as attack thresholds or new vulnerability detection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

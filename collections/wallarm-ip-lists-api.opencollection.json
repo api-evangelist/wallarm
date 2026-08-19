@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wallarm Applications IP Lists API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-WallarmApi-Token",
+      "value": "{{X-WallarmApi-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IP Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List IP Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "params": [
+              {
+                "name": "clientid",
+                "value": "",
+                "type": "query",
+                "description": "Client ID"
+              },
+              {
+                "name": "list",
+                "value": "",
+                "type": "query",
+                "description": "Filter by list type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Retrieve the contents of IP lists (allowlist, denylist, graylist). Returns up to 300 items per request. Use offset parameter for pagination."
+        },
+        {
+          "info": {
+            "name": "Add IP Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an IP address, subnet, country, or proxy service to an IP list (allowlist, denylist, or graylist)."
+        },
+        {
+          "info": {
+            "name": "Delete IP Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://us1.api.wallarm.com/v4/ip_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an IP rule from an IP list by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

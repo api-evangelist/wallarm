@@ -1,0 +1,201 @@
+{
+  "item": [
+    {
+      "id": "391cb073-0d21-42a5-974c-3306445d4ca8",
+      "name": "Vulnerabilities",
+      "description": {
+        "content": "Vulnerability detection and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65baf668-0049-4e29-abd1-4842445b03f8",
+          "name": "List Vulnerabilities",
+          "request": {
+            "name": "List Vulnerabilities",
+            "description": {
+              "content": "Retrieve detected vulnerabilities. Supports filtering by status, time range, and client ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "objects",
+                "vuln"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {\n    \"status\": \"<string>\",\n    \"time\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"limit\": 50\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d96213a-3c80-413d-a8dd-311d7e09cdcc",
+              "name": "List of vulnerabilities returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "objects",
+                    "vuln"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {\n    \"status\": \"<string>\",\n    \"time\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"limit\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8239,\n  \"body\": [\n    {\n      \"id\": 9810,\n      \"type\": \"string\",\n      \"status\": \"active\",\n      \"domain\": \"string\",\n      \"path\": \"string\",\n      \"method\": \"string\",\n      \"parameter\": \"string\",\n      \"description\": \"string\",\n      \"discovered\": 8660,\n      \"severity\": \"critical\"\n    },\n    {\n      \"id\": 1548,\n      \"type\": \"string\",\n      \"status\": \"fixed\",\n      \"domain\": \"string\",\n      \"path\": \"string\",\n      \"method\": \"string\",\n      \"parameter\": \"string\",\n      \"description\": \"string\",\n      \"discovered\": 4515,\n      \"severity\": \"low\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ceea83f-edf0-45a3-907d-d0e42ebe59d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "objects",
+                    "vuln"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {\n    \"status\": \"<string>\",\n    \"time\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"limit\": 50\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://us1.api.wallarm.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-WallarmApi-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cdca0354-8881-4641-ab21-82e865072658",
+    "name": "Wallarm Applications Vulnerabilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+      "type": "text/plain"
+    }
+  }
+}

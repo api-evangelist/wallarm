@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wallarm Applications Rules API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-WallarmApi-Token",
+      "value": "{{X-WallarmApi-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Security Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all security rules (hints) configured for the client. Rules include virtual patches, rate limits, and custom detection rules."
+        },
+        {
+          "info": {
+            "name": "Create Security Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new security rule such as a virtual patch to block specific attack vectors on defined path patterns."
+        },
+        {
+          "info": {
+            "name": "Delete Security Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/hint/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an existing security rule by its ID."
+        },
+        {
+          "info": {
+            "name": "List Rule Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/action",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve the conditions associated with configured security rules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

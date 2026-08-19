@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "aba0c331-0ada-4c90-8a81-9416028f718f",
+      "name": "IP Lists",
+      "description": {
+        "content": "IP allowlist, denylist, and graylist management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a7d05bd-e027-4898-9db8-7443212f4b52",
+          "name": "List IP Rules",
+          "request": {
+            "name": "List IP Rules",
+            "description": {
+              "content": "Retrieve the contents of IP lists (allowlist, denylist, graylist). Returns up to 300 items per request. Use offset parameter for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "ip_rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientid",
+                  "value": "<integer>",
+                  "description": "(Required) Client ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "list",
+                  "value": "<string>",
+                  "description": "Filter by list type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "300",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcaf52bf-d379-4f26-a056-02d6139c25b0",
+              "name": "IP rules returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "300"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3186,\n  \"body\": [\n    {\n      \"id\": 8844,\n      \"rule_type\": \"ip_range\",\n      \"list\": \"allowlist\",\n      \"subnet\": \"string\",\n      \"country_iso\": \"string\",\n      \"source\": \"string\",\n      \"expired_at\": 2761,\n      \"created_at\": 9634\n    },\n    {\n      \"id\": 7662,\n      \"rule_type\": \"country\",\n      \"list\": \"denylist\",\n      \"subnet\": \"string\",\n      \"country_iso\": \"string\",\n      \"source\": \"string\",\n      \"expired_at\": 1284,\n      \"created_at\": 8065\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76e6680b-edcc-45b4-9df7-e3e09a1e880e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "300"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94063103-feed-4d77-92e4-683122249d6b",
+          "name": "Add IP Rule",
+          "request": {
+            "name": "Add IP Rule",
+            "description": {
+              "content": "Add an IP address, subnet, country, or proxy service to an IP list (allowlist, denylist, or graylist).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "ip_rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rule_type\": \"<string>\",\n  \"pools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"subnet\": \"<string>\",\n  \"source_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expired_at\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "89388562-7d3b-4c3d-8916-7df7b2dd2fee",
+              "name": "IP rule added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule_type\": \"<string>\",\n  \"pools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"subnet\": \"<string>\",\n  \"source_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expired_at\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 86,\n  \"body\": {\n    \"id\": 1144,\n    \"rule_type\": \"ip_range\",\n    \"list\": \"graylist\",\n    \"subnet\": \"string\",\n    \"country_iso\": \"string\",\n    \"source\": \"string\",\n    \"expired_at\": 9317,\n    \"created_at\": 4406\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "027ef94a-6dd6-4e55-b2f6-2df35ca1a31b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule_type\": \"<string>\",\n  \"pools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"subnet\": \"<string>\",\n  \"source_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expired_at\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42f50de3-d853-4150-ba11-c3fb972864df",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rule_type\": \"<string>\",\n  \"pools\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"subnet\": \"<string>\",\n  \"source_values\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expired_at\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11b063da-ed8b-4f58-8642-9928d3e673df",
+          "name": "Delete IP Rule",
+          "request": {
+            "name": "Delete IP Rule",
+            "description": {
+              "content": "Remove an IP rule from an IP list by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "ip_rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"clientid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe16c347-3caa-4965-847d-9f4d291f253b",
+              "name": "IP rule deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5f74c15-3688-4544-9760-7e02b97a9a11",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ea01499-5c41-4fe4-bab1-16749c352149",
+              "name": "IP rule not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "ip_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-WallarmApi-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"clientid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://us1.api.wallarm.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-WallarmApi-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0ccb976-136d-4761-8f19-d2d954c3b42a",
+    "name": "Wallarm Applications IP Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+      "type": "text/plain"
+    }
+  }
+}

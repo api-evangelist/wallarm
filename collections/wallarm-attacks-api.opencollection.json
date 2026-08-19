@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wallarm Applications Attacks API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-WallarmApi-Token",
+      "value": "{{X-WallarmApi-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Attacks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v1/objects/attack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a list of attacks detected by Wallarm. Supports filtering by time range, client ID, attack type, and other criteria."
+        },
+        {
+          "info": {
+            "name": "List Attacks (Paginated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://us1.api.wallarm.com/v2/objects/attack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve attacks with cursor-based pagination, returning up to 100 records per page. Use the returned cursor to fetch subsequent pages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
