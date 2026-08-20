@@ -7,6 +7,8 @@ apis:
   humanURL: https://docs.wallarm.com/api/overview/
   baseURL: https://us1.api.wallarm.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -59,6 +61,8 @@ apis:
   humanURL: https://docs.wallarm.com/api/overview/
   baseURL: https://us1.api.wallarm.com
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
