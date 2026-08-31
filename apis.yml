@@ -89,6 +89,8 @@ apis:
   humanURL: https://docs.wallarm.com/api/overview/
   baseURL: https://us1.api.wallarm.com
   tags:
+  - Ip Lists
+  tags_raw:
   - IP Lists
   properties:
   - type: OpenAPI
