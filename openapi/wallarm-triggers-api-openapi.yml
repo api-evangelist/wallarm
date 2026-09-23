@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wallarm Applications Triggers API
+  title: Wallarm Triggers API
   description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
   version: 4.0.0
   termsOfService: https://www.wallarm.com/terms-of-service
@@ -70,47 +70,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    Trigger:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Trigger identifier
-        name:
-          type: string
-          description: Trigger name
-        enabled:
-          type: boolean
-          description: Whether trigger is active
-        conditions:
-          type: array
-          items:
-            type: object
-          description: Trigger conditions
-        actions:
-          type: array
-          items:
-            type: object
-          description: Actions to perform when trigger fires
-        created:
-          type: integer
-          description: Unix timestamp of creation
-    TriggerResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Trigger'
-    TriggerListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trigger'
     CreateTriggerRequest:
       type: object
       required:
@@ -160,6 +119,47 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
+    TriggerResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Trigger'
+    Trigger:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Trigger identifier
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          description: Whether trigger is active
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Trigger conditions
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to perform when trigger fires
+        created:
+          type: integer
+          description: Unix timestamp of creation
+    TriggerListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trigger'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

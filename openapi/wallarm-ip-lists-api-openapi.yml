@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wallarm Applications IP Lists API
+  title: Wallarm IP Lists API
   description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
   version: 4.0.0
   termsOfService: https://www.wallarm.com/terms-of-service
@@ -19,7 +19,7 @@ servers:
 security:
 - ApiTokenAuth: []
 tags:
-- name: IP Lists
+- name: Ip Lists
   description: IP allowlist, denylist, and graylist management
 paths:
   /v4/ip_rules:
@@ -28,7 +28,7 @@ paths:
       summary: List IP Rules
       description: Retrieve the contents of IP lists (allowlist, denylist, graylist). Returns up to 300 items per request. Use offset parameter for pagination.
       tags:
-      - IP Lists
+      - Ip Lists
       parameters:
       - name: clientid
         in: query
@@ -75,7 +75,7 @@ paths:
       summary: Add IP Rule
       description: Add an IP address, subnet, country, or proxy service to an IP list (allowlist, denylist, or graylist).
       tags:
-      - IP Lists
+      - Ip Lists
       requestBody:
         required: true
         content:
@@ -98,7 +98,7 @@ paths:
       summary: Delete IP Rule
       description: Remove an IP rule from an IP list by its ID.
       tags:
-      - IP Lists
+      - Ip Lists
       requestBody:
         required: true
         content:
@@ -133,15 +133,41 @@ components:
         clientid:
           type: integer
           description: Client ID
-    IpRuleListResponse:
+    IpRule:
       type: object
       properties:
-        status:
+        id:
           type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/IpRule'
+          description: IP rule identifier
+        rule_type:
+          type: string
+          enum:
+          - ip_range
+          - country
+          - proxy_type
+          description: Type of IP rule
+        list:
+          type: string
+          enum:
+          - allowlist
+          - denylist
+          - graylist
+          description: Which IP list this rule belongs to
+        subnet:
+          type: string
+          description: IP address or CIDR subnet (for ip_range type)
+        country_iso:
+          type: string
+          description: ISO 3166 country code (for country type)
+        source:
+          type: string
+          description: Proxy/threat type (for proxy_type)
+        expired_at:
+          type: integer
+          description: Unix timestamp when rule expires (null = permanent)
+        created_at:
+          type: integer
+          description: Unix timestamp of creation
     CreateIpRuleRequest:
       type: object
       required:
@@ -179,41 +205,15 @@ components:
         expired_at:
           type: integer
           description: Unix timestamp when rule expires
-    IpRule:
+    IpRuleListResponse:
       type: object
       properties:
-        id:
+        status:
           type: integer
-          description: IP rule identifier
-        rule_type:
-          type: string
-          enum:
-          - ip_range
-          - country
-          - proxy_type
-          description: Type of IP rule
-        list:
-          type: string
-          enum:
-          - allowlist
-          - denylist
-          - graylist
-          description: Which IP list this rule belongs to
-        subnet:
-          type: string
-          description: IP address or CIDR subnet (for ip_range type)
-        country_iso:
-          type: string
-          description: ISO 3166 country code (for country type)
-        source:
-          type: string
-          description: Proxy/threat type (for proxy_type)
-        expired_at:
-          type: integer
-          description: Unix timestamp when rule expires (null = permanent)
-        created_at:
-          type: integer
-          description: Unix timestamp of creation
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpRule'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

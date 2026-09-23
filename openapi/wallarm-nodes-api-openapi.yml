@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wallarm Applications Nodes API
+  title: Wallarm Nodes API
   description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
   version: 4.0.0
   termsOfService: https://www.wallarm.com/terms-of-service
@@ -70,21 +70,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CreateNodeRequest:
-      type: object
-      required:
-      - hostname
-      - type
-      properties:
-        hostname:
-          type: string
-          description: Node hostname
-        type:
-          type: string
-          description: Node type
-        clientid:
-          type: integer
-          description: Client ID
     NodeListResponse:
       type: object
       properties:
@@ -94,13 +79,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Node'
-    NodeResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Node'
     ObjectQueryRequest:
       type: object
       properties:
@@ -125,6 +103,13 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
+    NodeResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Node'
     Node:
       type: object
       properties:
@@ -149,6 +134,21 @@ components:
         last_activity:
           type: integer
           description: Unix timestamp of last activity
+    CreateNodeRequest:
+      type: object
+      required:
+      - hostname
+      - type
+      properties:
+        hostname:
+          type: string
+          description: Node hostname
+        type:
+          type: string
+          description: Node type
+        clientid:
+          type: integer
+          description: Client ID
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

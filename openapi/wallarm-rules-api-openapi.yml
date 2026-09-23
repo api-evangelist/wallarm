@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Wallarm Applications Rules API
+  title: Wallarm Rules API
   description: The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.
   version: 4.0.0
   termsOfService: https://www.wallarm.com/terms-of-service
@@ -112,15 +112,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    RuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
     CreateRuleRequest:
       type: object
       required:
@@ -144,27 +135,6 @@ components:
         enabled:
           type: boolean
           default: true
-    Rule:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Rule identifier
-        type:
-          type: string
-          description: Rule type (vpatch, regex, etc.)
-        action:
-          type: object
-          description: Rule conditions and scope
-        point:
-          type: array
-          description: Attack point specification
-        enabled:
-          type: boolean
-          description: Whether the rule is currently active
-        created:
-          type: integer
-          description: Unix timestamp of rule creation
     DeleteRuleRequest:
       type: object
       required:
@@ -177,6 +147,15 @@ components:
         clientid:
           type: integer
           description: Client ID
+    ActionListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            type: object
     ObjectQueryRequest:
       type: object
       properties:
@@ -201,14 +180,7 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
-    RuleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Rule'
-    ActionListResponse:
+    RuleListResponse:
       type: object
       properties:
         status:
@@ -216,7 +188,35 @@ components:
         body:
           type: array
           items:
-            type: object
+            $ref: '#/components/schemas/Rule'
+    Rule:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Rule identifier
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
+          type: object
+          description: Rule conditions and scope
+        point:
+          type: array
+          description: Attack point specification
+        enabled:
+          type: boolean
+          description: Whether the rule is currently active
+        created:
+          type: integer
+          description: Unix timestamp of rule creation
+    RuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Rule'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey
