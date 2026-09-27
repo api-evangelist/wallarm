@@ -46,15 +46,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ApplicationListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
     Application:
       type: object
       properties:
@@ -70,6 +61,15 @@ components:
         created:
           type: integer
           description: Unix timestamp of creation
+    ApplicationListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
     ObjectQueryRequest:
       type: object
       properties:

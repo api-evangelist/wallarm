@@ -70,6 +70,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    TriggerListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trigger'
     CreateTriggerRequest:
       type: object
       required:
@@ -95,37 +104,6 @@ components:
           items:
             type: object
           description: Actions to execute when conditions are met
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
-    TriggerResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Trigger'
     Trigger:
       type: object
       properties:
@@ -151,15 +129,37 @@ components:
         created:
           type: integer
           description: Unix timestamp of creation
-    TriggerListResponse:
+    TriggerResponse:
       type: object
       properties:
         status:
           type: integer
         body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trigger'
+          $ref: '#/components/schemas/Trigger'
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

@@ -112,6 +112,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ActionListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            type: object
     CreateRuleRequest:
       type: object
       required:
@@ -135,60 +144,6 @@ components:
         enabled:
           type: boolean
           default: true
-    DeleteRuleRequest:
-      type: object
-      required:
-      - id
-      - clientid
-      properties:
-        id:
-          type: integer
-          description: Rule ID to delete
-        clientid:
-          type: integer
-          description: Client ID
-    ActionListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            type: object
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
-    RuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
     Rule:
       type: object
       properties:
@@ -217,6 +172,51 @@ components:
           type: integer
         body:
           $ref: '#/components/schemas/Rule'
+    DeleteRuleRequest:
+      type: object
+      required:
+      - id
+      - clientid
+      properties:
+        id:
+          type: integer
+          description: Rule ID to delete
+        clientid:
+          type: integer
+          description: Client ID
+    RuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

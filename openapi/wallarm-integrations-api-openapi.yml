@@ -46,6 +46,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    IntegrationListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Integration'
     Integration:
       type: object
       properties:
@@ -64,15 +73,6 @@ components:
         created:
           type: integer
           description: Unix timestamp of creation
-    IntegrationListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
     ObjectQueryRequest:
       type: object
       properties:

@@ -114,6 +114,52 @@ paths:
           description: IP rule not found
 components:
   schemas:
+    CreateIpRuleRequest:
+      type: object
+      required:
+      - rule_type
+      - pools
+      - clientid
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        rule_type:
+          type: string
+          enum:
+          - ip_range
+          - country
+          - proxy_type
+          description: Type of IP rule to create
+        subnet:
+          type: string
+          description: IP address or CIDR notation (for ip_range)
+        source_values:
+          type: array
+          items:
+            type: string
+          description: Country codes (ISO 3166) or proxy types
+        pools:
+          type: array
+          items:
+            type: string
+            enum:
+            - allowlist
+            - denylist
+            - graylist
+          description: Target IP list(s)
+        expired_at:
+          type: integer
+          description: Unix timestamp when rule expires
+    IpRuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpRule'
     IpRuleResponse:
       type: object
       properties:
@@ -168,52 +214,6 @@ components:
         created_at:
           type: integer
           description: Unix timestamp of creation
-    CreateIpRuleRequest:
-      type: object
-      required:
-      - rule_type
-      - pools
-      - clientid
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        rule_type:
-          type: string
-          enum:
-          - ip_range
-          - country
-          - proxy_type
-          description: Type of IP rule to create
-        subnet:
-          type: string
-          description: IP address or CIDR notation (for ip_range)
-        source_values:
-          type: array
-          items:
-            type: string
-          description: Country codes (ISO 3166) or proxy types
-        pools:
-          type: array
-          items:
-            type: string
-            enum:
-            - allowlist
-            - denylist
-            - graylist
-          description: Target IP list(s)
-        expired_at:
-          type: integer
-          description: Unix timestamp when rule expires
-    IpRuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/IpRule'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey
