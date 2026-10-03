@@ -112,87 +112,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ActionListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            type: object
-    CreateRuleRequest:
-      type: object
-      required:
-      - type
-      - action
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        type:
-          type: string
-          description: Rule type (vpatch, regex, etc.)
-        action:
-          type: array
-          description: Rule conditions (domain, path, application)
-          items:
-            type: object
-        point:
-          type: array
-          description: Attack vector specification
-        enabled:
-          type: boolean
-          default: true
-    Rule:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Rule identifier
-        type:
-          type: string
-          description: Rule type (vpatch, regex, etc.)
-        action:
-          type: object
-          description: Rule conditions and scope
-        point:
-          type: array
-          description: Attack point specification
-        enabled:
-          type: boolean
-          description: Whether the rule is currently active
-        created:
-          type: integer
-          description: Unix timestamp of rule creation
-    RuleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Rule'
-    DeleteRuleRequest:
-      type: object
-      required:
-      - id
-      - clientid
-      properties:
-        id:
-          type: integer
-          description: Rule ID to delete
-        clientid:
-          type: integer
-          description: Client ID
-    RuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
     ObjectQueryRequest:
       type: object
       properties:
@@ -217,6 +136,87 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
+    CreateRuleRequest:
+      type: object
+      required:
+      - type
+      - action
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
+          type: array
+          description: Rule conditions (domain, path, application)
+          items:
+            type: object
+        point:
+          type: array
+          description: Attack vector specification
+        enabled:
+          type: boolean
+          default: true
+    ActionListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            type: object
+    RuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+    RuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Rule'
+    DeleteRuleRequest:
+      type: object
+      required:
+      - id
+      - clientid
+      properties:
+        id:
+          type: integer
+          description: Rule ID to delete
+        clientid:
+          type: integer
+          description: Client ID
+    Rule:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Rule identifier
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
+          type: object
+          description: Rule conditions and scope
+        point:
+          type: array
+          description: Attack point specification
+        enabled:
+          type: boolean
+          description: Whether the rule is currently active
+        created:
+          type: integer
+          description: Unix timestamp of rule creation
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

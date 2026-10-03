@@ -70,15 +70,6 @@ components:
         limit:
           type: integer
           default: 50
-    VulnListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Vulnerability'
     Vulnerability:
       type: object
       properties:
@@ -120,6 +111,15 @@ components:
           - medium
           - low
           description: Vulnerability severity level
+    VulnListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

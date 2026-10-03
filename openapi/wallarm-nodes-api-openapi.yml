@@ -70,61 +70,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    Node:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Node identifier
-        hostname:
-          type: string
-          description: Node hostname
-        ip:
-          type: string
-          description: Node IP address
-        status:
-          type: string
-          description: Node status (active, inactive)
-        type:
-          type: string
-          description: Node type
-        version:
-          type: string
-          description: Wallarm node version
-        last_activity:
-          type: integer
-          description: Unix timestamp of last activity
-    CreateNodeRequest:
-      type: object
-      required:
-      - hostname
-      - type
-      properties:
-        hostname:
-          type: string
-          description: Node hostname
-        type:
-          type: string
-          description: Node type
-        clientid:
-          type: integer
-          description: Client ID
-    NodeListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Node'
-    NodeResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Node'
     ObjectQueryRequest:
       type: object
       properties:
@@ -149,6 +94,61 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
+    NodeListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+    CreateNodeRequest:
+      type: object
+      required:
+      - hostname
+      - type
+      properties:
+        hostname:
+          type: string
+          description: Node hostname
+        type:
+          type: string
+          description: Node type
+        clientid:
+          type: integer
+          description: Client ID
+    NodeResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Node'
+    Node:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Node identifier
+        hostname:
+          type: string
+          description: Node hostname
+        ip:
+          type: string
+          description: Node IP address
+        status:
+          type: string
+          description: Node status (active, inactive)
+        type:
+          type: string
+          description: Node type
+        version:
+          type: string
+          description: Wallarm node version
+        last_activity:
+          type: integer
+          description: Unix timestamp of last activity
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

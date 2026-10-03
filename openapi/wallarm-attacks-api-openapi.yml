@@ -68,6 +68,30 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
     Attack:
       type: object
       properties:
@@ -98,21 +122,6 @@ components:
         hits:
           type: integer
           description: Number of hit requests in this attack
-    PaginatedAttackResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: '#/components/schemas/Attack'
-            cursor:
-              type: string
-              description: Cursor for fetching the next page
     PaginatedQueryRequest:
       type: object
       properties:
@@ -133,6 +142,21 @@ components:
         cursor:
           type: string
           description: Cursor for fetching next page of results
+    PaginatedAttackResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Attack'
+            cursor:
+              type: string
+              description: Cursor for fetching the next page
     AttackListResponse:
       type: object
       properties:
@@ -142,30 +166,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Attack'
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
   securitySchemes:
     ApiTokenAuth:
       type: apiKey
