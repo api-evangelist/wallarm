@@ -286,6 +286,9 @@ description: >-
   that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud
   environments, and as an NGINX-based proxy.
 common:
+  - type: CapabilityMap
+    url: capabilities/wallarm-capability-edges.yml
+    name: Wallarm Business Capability Map
   - type: AgenticAccess
     url: agentic-access/wallarm-agentic-access.yml
   - type: DomainSecurity

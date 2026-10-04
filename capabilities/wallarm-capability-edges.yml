@@ -1,0 +1,40 @@
+slug: wallarm
+provider: Wallarm
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Attacks
+  spec_file: wallarm-attacks-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: POST /v1/objects/attack listAttacks List Attacks; schemas Attack, PaginatedAttackResponse
+  reason: Querying detected attacks on protected APIs is security threat detection and response monitoring.
+- tag: Vulnerabilities
+  spec_file: wallarm-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.9
+  evidence: POST /v1/objects/vuln listVulnerabilities List Vulnerabilities; schemas Vulnerability, VulnListResponse
+  reason: Enumerating detected vulnerabilities in protected applications is squarely vulnerability management.
+- tag: Rules
+  spec_file: wallarm-rules-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: POST /v1/objects/hint/create createRule Create Security Rule; POST /v1/objects/action listRuleConditions
+  reason: CRUD over security rules and their conditions configures the protection policy of the API firewall;
+    L1 Cybersecurity Management, sub-capability ambiguous between governance/policy and detection tuning.
