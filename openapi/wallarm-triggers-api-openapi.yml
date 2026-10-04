@@ -70,62 +70,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
-    CreateTriggerRequest:
-      type: object
-      required:
-      - name
-      - conditions
-      - actions
-      properties:
-        clientid:
-          type: integer
-        name:
-          type: string
-          description: Trigger name
-        enabled:
-          type: boolean
-          default: true
-        conditions:
-          type: array
-          items:
-            type: object
-          description: Conditions that activate the trigger
-        actions:
-          type: array
-          items:
-            type: object
-          description: Actions to execute when conditions are met
-    TriggerResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Trigger'
     Trigger:
       type: object
       properties:
@@ -151,6 +95,31 @@ components:
         created:
           type: integer
           description: Unix timestamp of creation
+    CreateTriggerRequest:
+      type: object
+      required:
+      - name
+      - conditions
+      - actions
+      properties:
+        clientid:
+          type: integer
+        name:
+          type: string
+          description: Trigger name
+        enabled:
+          type: boolean
+          default: true
+        conditions:
+          type: array
+          items:
+            type: object
+          description: Conditions that activate the trigger
+        actions:
+          type: array
+          items:
+            type: object
+          description: Actions to execute when conditions are met
     TriggerListResponse:
       type: object
       properties:
@@ -160,6 +129,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Trigger'
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
+    TriggerResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Trigger'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

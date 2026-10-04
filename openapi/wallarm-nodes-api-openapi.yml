@@ -70,61 +70,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
-    NodeListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Node'
-    CreateNodeRequest:
-      type: object
-      required:
-      - hostname
-      - type
-      properties:
-        hostname:
-          type: string
-          description: Node hostname
-        type:
-          type: string
-          description: Node type
-        clientid:
-          type: integer
-          description: Client ID
-    NodeResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/Node'
     Node:
       type: object
       properties:
@@ -149,6 +94,61 @@ components:
         last_activity:
           type: integer
           description: Unix timestamp of last activity
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
+    CreateNodeRequest:
+      type: object
+      required:
+      - hostname
+      - type
+      properties:
+        hostname:
+          type: string
+          description: Node hostname
+        type:
+          type: string
+          description: Node type
+        clientid:
+          type: integer
+          description: Client ID
+    NodeListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Node'
+    NodeResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Node'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

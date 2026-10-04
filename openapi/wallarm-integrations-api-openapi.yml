@@ -55,6 +55,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Integration'
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Integration identifier
+        name:
+          type: string
+          description: Integration name
+        type:
+          type: string
+          description: Integration type (slack, pagerduty, splunk, etc.)
+        enabled:
+          type: boolean
+          description: Whether integration is active
+        created:
+          type: integer
+          description: Unix timestamp of creation
     ObjectQueryRequest:
       type: object
       properties:
@@ -79,24 +97,6 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
-    Integration:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Integration identifier
-        name:
-          type: string
-          description: Integration name
-        type:
-          type: string
-          description: Integration type (slack, pagerduty, splunk, etc.)
-        enabled:
-          type: boolean
-          description: Whether integration is active
-        created:
-          type: integer
-          description: Unix timestamp of creation
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

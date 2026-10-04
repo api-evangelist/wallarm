@@ -46,6 +46,21 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Application identifier
+        name:
+          type: string
+          description: Application name
+        domain:
+          type: string
+          description: Application domain
+        created:
+          type: integer
+          description: Unix timestamp of creation
     ApplicationListResponse:
       type: object
       properties:
@@ -79,21 +94,6 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
-    Application:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Application identifier
-        name:
-          type: string
-          description: Application name
-        domain:
-          type: string
-          description: Application domain
-        created:
-          type: integer
-          description: Unix timestamp of creation
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

@@ -68,6 +68,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    AttackListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attack'
     ObjectQueryRequest:
       type: object
       properties:
@@ -157,15 +166,6 @@ components:
             cursor:
               type: string
               description: Cursor for fetching the next page
-    AttackListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attack'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

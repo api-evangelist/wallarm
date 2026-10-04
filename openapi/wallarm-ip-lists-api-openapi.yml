@@ -114,6 +114,27 @@ paths:
           description: IP rule not found
 components:
   schemas:
+    DeleteIpRuleRequest:
+      type: object
+      required:
+      - id
+      - clientid
+      properties:
+        id:
+          type: integer
+          description: IP rule ID to delete
+        clientid:
+          type: integer
+          description: Client ID
+    IpRuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpRule'
     CreateIpRuleRequest:
       type: object
       required:
@@ -151,34 +172,6 @@ components:
         expired_at:
           type: integer
           description: Unix timestamp when rule expires
-    IpRuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/IpRule'
-    IpRuleResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          $ref: '#/components/schemas/IpRule'
-    DeleteIpRuleRequest:
-      type: object
-      required:
-      - id
-      - clientid
-      properties:
-        id:
-          type: integer
-          description: IP rule ID to delete
-        clientid:
-          type: integer
-          description: Client ID
     IpRule:
       type: object
       properties:
@@ -214,6 +207,13 @@ components:
         created_at:
           type: integer
           description: Unix timestamp of creation
+    IpRuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/IpRule'
   securitySchemes:
     ApiTokenAuth:
       type: apiKey
