@@ -46,30 +46,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    VulnQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          properties:
-            status:
-              type: string
-              enum:
-              - active
-              - fixed
-              - false_positive
-              description: Vulnerability status filter
-            time:
-              type: array
-              items:
-                type: integer
-              description: Time range as Unix timestamps [start, end]
-        limit:
-          type: integer
-          default: 50
     Vulnerability:
       type: object
       properties:
@@ -120,6 +96,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Vulnerability'
+    VulnQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+              - active
+              - fixed
+              - false_positive
+              description: Vulnerability status filter
+            time:
+              type: array
+              items:
+                type: integer
+              description: Time range as Unix timestamps [start, end]
+        limit:
+          type: integer
+          default: 50
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

@@ -112,29 +112,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CreateRuleRequest:
-      type: object
-      required:
-      - type
-      - action
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        type:
-          type: string
-          description: Rule type (vpatch, regex, etc.)
-        action:
-          type: array
-          description: Rule conditions (domain, path, application)
-          items:
-            type: object
-        point:
-          type: array
-          description: Attack vector specification
-        enabled:
-          type: boolean
-          default: true
     ObjectQueryRequest:
       type: object
       properties:
@@ -159,15 +136,6 @@ components:
           type: boolean
           default: true
           description: Sort in descending order
-    RuleListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
     DeleteRuleRequest:
       type: object
       required:
@@ -180,6 +148,31 @@ components:
         clientid:
           type: integer
           description: Client ID
+    RuleListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+    RuleResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          $ref: '#/components/schemas/Rule'
+    ActionListResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        body:
+          type: array
+          items:
+            type: object
     Rule:
       type: object
       properties:
@@ -201,22 +194,29 @@ components:
         created:
           type: integer
           description: Unix timestamp of rule creation
-    RuleResponse:
+    CreateRuleRequest:
       type: object
+      required:
+      - type
+      - action
       properties:
-        status:
+        clientid:
           type: integer
-        body:
-          $ref: '#/components/schemas/Rule'
-    ActionListResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        body:
+          description: Client ID
+        type:
+          type: string
+          description: Rule type (vpatch, regex, etc.)
+        action:
           type: array
+          description: Rule conditions (domain, path, application)
           items:
             type: object
+        point:
+          type: array
+          description: Attack vector specification
+        enabled:
+          type: boolean
+          default: true
   securitySchemes:
     ApiTokenAuth:
       type: apiKey

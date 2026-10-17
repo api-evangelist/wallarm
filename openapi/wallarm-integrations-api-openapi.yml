@@ -46,6 +46,30 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ObjectQueryRequest:
+      type: object
+      properties:
+        clientid:
+          type: integer
+          description: Client ID
+        filter:
+          type: object
+          description: Filter criteria
+        limit:
+          type: integer
+          default: 50
+          description: Maximum number of results to return
+        offset:
+          type: integer
+          default: 0
+          description: Pagination offset
+        order_by:
+          type: string
+          description: Field to sort results by
+        order_desc:
+          type: boolean
+          default: true
+          description: Sort in descending order
     IntegrationListResponse:
       type: object
       properties:
@@ -73,30 +97,6 @@ components:
         created:
           type: integer
           description: Unix timestamp of creation
-    ObjectQueryRequest:
-      type: object
-      properties:
-        clientid:
-          type: integer
-          description: Client ID
-        filter:
-          type: object
-          description: Filter criteria
-        limit:
-          type: integer
-          default: 50
-          description: Maximum number of results to return
-        offset:
-          type: integer
-          default: 0
-          description: Pagination offset
-        order_by:
-          type: string
-          description: Field to sort results by
-        order_desc:
-          type: boolean
-          default: true
-          description: Sort in descending order
   securitySchemes:
     ApiTokenAuth:
       type: apiKey
