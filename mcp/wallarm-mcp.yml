@@ -43,3 +43,56 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools:
+- name: list_versions
+  description: 'Returns supported Wallarm Node version lines:
+
+    - ''5.x'' = NGINX Node 5.x / Native Node 0.13.x and below (maintenance)
+
+    - ''6.x'' = NGINX Node 6.x / Native Node 0.14.x – 0.25.x (current stable, default)
+
+    - ''7.x'' = NGINX Node 7.x / Native Node 0.26.x and above (preview)
+
+
+    For each version the response includes status, short description, Native-family Node range, and links
+    to per-version docs landing, what''s-new, artifact-versions, and versioning policy. Also returns `legacy_versions_notice`
+    for 4.x and earlier (no longer hosted).
+
+
+    Useful for questions about Wallarm Node versions and their correspondence, and as a prerequisite lookup
+    before answering version-sensitive topics in Wallarm API Security, Node deployment, TRT, or Passive
+    Detection.'
+- name: list_pages
+  description: 'Returns the full list of documentation pages (title, URL, section, summary) from the Wallarm
+    AI Control Platform docs.
+
+
+    By default returns pages from the current stable docs version. The optional `wallarm_node_version`
+    parameter targets an earlier (5.x, maintenance) or preview (7.x) version instead. Version matters
+    mainly for Wallarm API Security docs because Node is its core component — installed in the user''s
+    infrastructure or on Wallarm-managed Security Edge to analyze and filter incoming traffic. The other
+    three Wallarm AI Control Platform products (AI Hypervisor, Infrastructure Discovery, API Security
+    Testing) have docs that are the same across versions.
+
+
+    The optional `section` parameter narrows the listing to pages whose section name contains the given
+    substring (e.g. ''Kubernetes'' returns only K8s-related pages). For keyword search across pages, use
+    `search_pages`.'
+- name: search_pages
+  description: 'Searches the Wallarm AI Control Platform documentation by keywords and returns the top-N
+    most relevant pages (title, URL, section, summary, relevance score). Ranking weighs title matches
+    highest, then section, then summary — all over the curated `llms.txt` index. Covers the entire platform
+    (all four products), so use for ANY Wallarm-specific question.
+
+
+    By default searches the current stable docs version. The optional `wallarm_node_version` parameter
+    targets an earlier (5.x, maintenance) or preview (7.x) version instead. Version matters mainly for
+    Wallarm API Security topics, since features evolve between Node releases. The other three platform
+    products (AI Hypervisor, Infrastructure Discovery, API Security Testing) are version-agnostic.'
+- name: get_page
+  description: 'Returns the full markdown content of one Wallarm documentation page by URL. Useful when
+    you already know the exact page you need (e.g. from a previous `search_pages` or `list_pages` call,
+    or a URL the user pasted). The URL must be on docs.wallarm.com, must end in `.md`, and must use the
+    correct version-prefix convention: 5.x and 7.x pages live under `/5.x/` and `/7.x/`; 6.x lives at
+    the docs root with NO `/6.x/` prefix (passing `/6.x/...` is an error). 4.x is no longer hosted.'
+tools_count: 4
