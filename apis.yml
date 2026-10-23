@@ -286,6 +286,8 @@ description: >-
   that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud
   environments, and as an NGINX-based proxy.
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/wallarm/overview
   - type: Plans
     url: plans/wallarm-plans-pricing.yml
   - type: RateLimits
