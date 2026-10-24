@@ -1,327 +1,376 @@
 {
+  "info": {
+    "_postman_id": "2dbd1093-dbbb-4ccd-b840-52dee83c3ba8",
+    "name": "Wallarm Attacks API",
+    "description": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:36:42.000Z",
+    "updatedAt": "2026-10-22T01:36:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2dbd1093-dbbb-4ccd-b840-52dee83c3ba8"
+  },
   "item": [
     {
-      "id": "ef2803bb-1ce3-4ea1-8a49-49f386d2150f",
-      "name": "Attacks",
-      "description": {
-        "content": "Attack and incident data management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "6c96a0a6-ca51-41e7-94f2-7986590cbf32",
-          "name": "List Attacks",
-          "request": {
-            "name": "List Attacks",
-            "description": {
-              "content": "Retrieve a list of attacks detected by Wallarm. Supports filtering by time range, client ID, attack type, and other criteria.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "objects",
-                "attack"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "objects",
+          "item": [
             {
-              "id": "065201a7-f5cc-46fa-be76-9271ed04871f",
-              "name": "List of attacks returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "attack"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
+              "name": "attack",
+              "item": [
+                {
+                  "name": "List Attacks",
+                  "id": "31708695-1f88-40be-9499-c99e79c1f895",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 4750,\n  \"body\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"time\": 3348,\n      \"domain\": \"string\",\n      \"path\": \"string\",\n      \"method\": \"string\",\n      \"parameter\": \"string\",\n      \"status\": 913,\n      \"hits\": 5578\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"time\": 3519,\n      \"domain\": \"string\",\n      \"path\": \"string\",\n      \"method\": \"string\",\n      \"parameter\": \"string\",\n      \"status\": 9018,\n      \"hits\": 4978\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b0a1e682-9059-4b98-a435-d9ffaf599e4f",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "attack"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/objects/attack",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "objects",
+                        "attack"
+                      ]
+                    },
+                    "description": "Retrieve a list of attacks detected by Wallarm. Supports filtering by time range, client ID, attack type, and other criteria."
+                  },
+                  "response": [
+                    {
+                      "id": "a74092a5-1451-496b-86e0-80259a9becae",
+                      "name": "List of attacks returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/attack",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "attack"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"body\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"domain\": \"<string>\",\n      \"path\": \"<string>\",\n      \"method\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"hits\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"time\": \"<integer>\",\n      \"domain\": \"<string>\",\n      \"path\": \"<string>\",\n      \"method\": \"<string>\",\n      \"parameter\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"hits\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:36:43.000Z",
+                      "updatedAt": "2026-10-22T01:36:43.000Z",
+                      "uid": "35240-a74092a5-1451-496b-86e0-80259a9becae"
+                    },
+                    {
+                      "id": "a2e8dc01-d88e-4819-b920-4a71794c8f15",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/attack",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "attack"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:36:43.000Z",
+                      "updatedAt": "2026-10-22T01:36:43.000Z",
+                      "uid": "35240-a2e8dc01-d88e-4819-b920-4a71794c8f15"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T01:36:43.000Z",
+                  "updatedAt": "2026-10-22T01:36:43.000Z",
+                  "uid": "35240-31708695-1f88-40be-9499-c99e79c1f895"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "a6280448-7dde-424e-86f4-f597fd891b6a",
+              "createdAt": "2026-10-22T01:36:43.000Z",
+              "updatedAt": "2026-10-22T01:36:43.000Z",
+              "uid": "35240-a6280448-7dde-424e-86f4-f597fd891b6a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "adbeb9ba-4d92-4e12-9061-aaa5488e78b8",
-          "name": "List Attacks (Paginated)",
-          "request": {
-            "name": "List Attacks (Paginated)",
-            "description": {
-              "content": "Retrieve attacks with cursor-based pagination, returning up to 100 records per page. Use the returned cursor to fetch subsequent pages.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "objects",
-                "attack"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c54de7c4-1cf9-4694-b718-1e07ef315e27",
-              "name": "Paginated list of attacks",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "objects",
-                    "attack"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 7948,\n  \"body\": {\n    \"data\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"time\": 1278,\n        \"domain\": \"string\",\n        \"path\": \"string\",\n        \"method\": \"string\",\n        \"parameter\": \"string\",\n        \"status\": 9189,\n        \"hits\": 2542\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"time\": 6268,\n        \"domain\": \"string\",\n        \"path\": \"string\",\n        \"method\": \"string\",\n        \"parameter\": \"string\",\n        \"status\": 3572,\n        \"hits\": 393\n      }\n    ],\n    \"cursor\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "520ac8ca-f90a-42e2-97f6-a7e990a9701e",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "objects",
-                    "attack"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "33c63e01-e720-4d64-9361-a1bdd6f53c11",
+          "createdAt": "2026-10-22T01:36:43.000Z",
+          "updatedAt": "2026-10-22T01:36:43.000Z",
+          "uid": "35240-33c63e01-e720-4d64-9361-a1bdd6f53c11"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "2a66c0bb-e338-48f8-a8c7-958b3e0f81c7",
+      "createdAt": "2026-10-22T01:36:43.000Z",
+      "updatedAt": "2026-10-22T01:36:43.000Z",
+      "uid": "35240-2a66c0bb-e338-48f8-a8c7-958b3e0f81c7"
+    },
     {
-      "type": "string",
-      "value": "https://us1.api.wallarm.com",
-      "key": "baseUrl"
+      "name": "v2",
+      "item": [
+        {
+          "name": "objects",
+          "item": [
+            {
+              "name": "attack",
+              "item": [
+                {
+                  "name": "List Attacks (Paginated)",
+                  "id": "c5d3e190-b4d2-4339-a476-15a817296792",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/objects/attack",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "objects",
+                        "attack"
+                      ]
+                    },
+                    "description": "Retrieve attacks with cursor-based pagination, returning up to 100 records per page. Use the returned cursor to fetch subsequent pages."
+                  },
+                  "response": [
+                    {
+                      "id": "7b5fc1ff-1ab6-4883-bc84-d2d763c7a3c1",
+                      "name": "Paginated list of attacks",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/objects/attack",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "objects",
+                            "attack"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"body\": {\n    \"data\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"time\": \"<integer>\",\n        \"domain\": \"<string>\",\n        \"path\": \"<string>\",\n        \"method\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"status\": \"<integer>\",\n        \"hits\": \"<integer>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"time\": \"<integer>\",\n        \"domain\": \"<string>\",\n        \"path\": \"<string>\",\n        \"method\": \"<string>\",\n        \"parameter\": \"<string>\",\n        \"status\": \"<integer>\",\n        \"hits\": \"<integer>\"\n      }\n    ],\n    \"cursor\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:36:43.000Z",
+                      "updatedAt": "2026-10-22T01:36:43.000Z",
+                      "uid": "35240-7b5fc1ff-1ab6-4883-bc84-d2d763c7a3c1"
+                    },
+                    {
+                      "id": "a9a9c37f-66d0-444d-a7ec-ec617065ff3d",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 100,\n  \"paging\": true,\n  \"cursor\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/objects/attack",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "objects",
+                            "attack"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:36:43.000Z",
+                      "updatedAt": "2026-10-22T01:36:43.000Z",
+                      "uid": "35240-a9a9c37f-66d0-444d-a7ec-ec617065ff3d"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:36:43.000Z",
+                  "updatedAt": "2026-10-22T01:36:43.000Z",
+                  "uid": "35240-c5d3e190-b4d2-4339-a476-15a817296792"
+                }
+              ],
+              "id": "42a14a88-9ece-42a3-9e4a-0e0ed6c03ac7",
+              "createdAt": "2026-10-22T01:36:43.000Z",
+              "updatedAt": "2026-10-22T01:36:43.000Z",
+              "uid": "35240-42a14a88-9ece-42a3-9e4a-0e0ed6c03ac7"
+            }
+          ],
+          "id": "42490194-e476-4802-96fc-c9abd7e5fb9c",
+          "createdAt": "2026-10-22T01:36:43.000Z",
+          "updatedAt": "2026-10-22T01:36:43.000Z",
+          "uid": "35240-42490194-e476-4802-96fc-c9abd7e5fb9c"
+        }
+      ],
+      "id": "c7f9d9e3-1aba-4c50-88c0-1cb1acdf9174",
+      "createdAt": "2026-10-22T01:36:43.000Z",
+      "updatedAt": "2026-10-22T01:36:43.000Z",
+      "uid": "35240-c7f9d9e3-1aba-4c50-88c0-1cb1acdf9174"
     }
   ],
   "auth": {
@@ -329,25 +378,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-WallarmApi-Token"
+        "value": "X-WallarmApi-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4e33969f-566e-48e0-9f7e-f045d012cddd",
-    "name": "Wallarm Applications Attacks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us1.api.wallarm.com"
     }
-  }
+  ]
 }

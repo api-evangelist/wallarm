@@ -1,380 +1,411 @@
 {
+  "info": {
+    "_postman_id": "d10c55f6-8e7a-45aa-b3f3-5d7a1298fb9e",
+    "name": "Wallarm Triggers API",
+    "description": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:37:13.000Z",
+    "updatedAt": "2026-10-22T01:37:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d10c55f6-8e7a-45aa-b3f3-5d7a1298fb9e"
+  },
   "item": [
     {
-      "id": "4296ecff-1ccc-4867-a0cb-ac221c26a713",
-      "name": "Triggers",
-      "description": {
-        "content": "Automated trigger and alert management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "01aa868e-5475-44c3-a0c3-3d8641306af1",
-          "name": "List Triggers",
-          "request": {
-            "name": "List Triggers",
-            "description": {
-              "content": "Retrieve all configured automated triggers and alert conditions.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "objects",
-                "trigger"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "objects",
+          "item": [
             {
-              "id": "d34687b3-9b9e-4130-9eb8-ff7c141aa8a4",
-              "name": "List of triggers returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "trigger"
+              "name": "trigger",
+              "item": [
+                {
+                  "name": "create",
+                  "item": [
+                    {
+                      "name": "Create Trigger",
+                      "id": "f7151d5c-c788-45e8-aa55-76a78f2871ac",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [],\n  \"actions\": [],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/trigger/create",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "trigger",
+                            "create"
+                          ]
+                        },
+                        "description": "Create a new automated trigger that fires based on security events such as attack thresholds or new vulnerability detection."
+                      },
+                      "response": [
+                        {
+                          "id": "89ca742e-5109-45b7-81cb-8d9dbf6399fa",
+                          "name": "Trigger created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-WallarmApi-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [],\n  \"actions\": [],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/objects/trigger/create",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "objects",
+                                "trigger",
+                                "create"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"body\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"created\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:37:14.000Z",
+                          "updatedAt": "2026-10-22T01:37:14.000Z",
+                          "uid": "35240-89ca742e-5109-45b7-81cb-8d9dbf6399fa"
+                        },
+                        {
+                          "id": "382284f4-f0bd-435a-af97-e075560d8a5e",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-WallarmApi-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [],\n  \"actions\": [],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/objects/trigger/create",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "objects",
+                                "trigger",
+                                "create"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:37:14.000Z",
+                          "updatedAt": "2026-10-22T01:37:14.000Z",
+                          "uid": "35240-382284f4-f0bd-435a-af97-e075560d8a5e"
+                        },
+                        {
+                          "id": "3294b840-5403-4b8c-9bee-5b41c5c3ef42",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-WallarmApi-Token",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [],\n  \"actions\": [],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/objects/trigger/create",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "objects",
+                                "trigger",
+                                "create"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:37:14.000Z",
+                          "updatedAt": "2026-10-22T01:37:14.000Z",
+                          "uid": "35240-3294b840-5403-4b8c-9bee-5b41c5c3ef42"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:37:14.000Z",
+                      "updatedAt": "2026-10-22T01:37:14.000Z",
+                      "uid": "35240-f7151d5c-c788-45e8-aa55-76a78f2871ac"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "id": "5a907ad9-4046-4900-8d09-32bc5dd67839",
+                  "createdAt": "2026-10-22T01:37:14.000Z",
+                  "updatedAt": "2026-10-22T01:37:14.000Z",
+                  "uid": "35240-5a907ad9-4046-4900-8d09-32bc5dd67839"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
+                {
+                  "name": "List Triggers",
+                  "id": "b145020b-6c52-4f34-a414-c4a52dba0712",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 9362,\n  \"body\": [\n    {\n      \"id\": 6079,\n      \"name\": \"string\",\n      \"enabled\": true,\n      \"created\": 644\n    },\n    {\n      \"id\": 8145,\n      \"name\": \"string\",\n      \"enabled\": false,\n      \"created\": 6976\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7c92b0a3-6dc1-4255-b7c7-d5cf2f7d8851",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "trigger"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/objects/trigger",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "objects",
+                        "trigger"
+                      ]
+                    },
+                    "description": "Retrieve all configured automated triggers and alert conditions."
+                  },
+                  "response": [
+                    {
+                      "id": "c9fd08d4-0bf3-41bf-a60a-502a8b8f6443",
+                      "name": "List of triggers returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/trigger",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "trigger"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"body\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:37:14.000Z",
+                      "updatedAt": "2026-10-22T01:37:14.000Z",
+                      "uid": "35240-c9fd08d4-0bf3-41bf-a60a-502a8b8f6443"
+                    },
+                    {
+                      "id": "c0e9d2a1-b2ed-44fe-a0ff-5ca406f8db62",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/trigger",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "trigger"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:37:14.000Z",
+                      "updatedAt": "2026-10-22T01:37:14.000Z",
+                      "uid": "35240-c0e9d2a1-b2ed-44fe-a0ff-5ca406f8db62"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T01:37:14.000Z",
+                  "updatedAt": "2026-10-22T01:37:14.000Z",
+                  "uid": "35240-b145020b-6c52-4f34-a414-c4a52dba0712"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "a8fe6e5c-a8cd-4cfd-a8c0-1b14d466d1bb",
+              "createdAt": "2026-10-22T01:37:14.000Z",
+              "updatedAt": "2026-10-22T01:37:14.000Z",
+              "uid": "35240-a8fe6e5c-a8cd-4cfd-a8c0-1b14d466d1bb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "db03353a-ee97-4aad-9f75-da4752a2dd5a",
-          "name": "Create Trigger",
-          "request": {
-            "name": "Create Trigger",
-            "description": {
-              "content": "Create a new automated trigger that fires based on security events such as attack thresholds or new vulnerability detection.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "objects",
-                "trigger",
-                "create"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "28cef51c-bfcc-4f7f-91da-069d51c935b7",
-              "name": "Trigger created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "trigger",
-                    "create"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 2778,\n  \"body\": {\n    \"id\": 9124,\n    \"name\": \"string\",\n    \"enabled\": false,\n    \"created\": 7207\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "088e4ffa-b9bc-40d7-a36d-61b0b67f51ce",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "trigger",
-                    "create"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "051efa5b-687f-4403-b808-95ee84332a70",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "trigger",
-                    "create"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"conditions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"clientid\": \"<integer>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1ee04d18-b2c7-424d-9c60-bacfe87b5587",
+          "createdAt": "2026-10-22T01:37:14.000Z",
+          "updatedAt": "2026-10-22T01:37:14.000Z",
+          "uid": "35240-1ee04d18-b2c7-424d-9c60-bacfe87b5587"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://us1.api.wallarm.com",
-      "key": "baseUrl"
+      "id": "98b5e796-62a8-4f4a-be51-c08a61af6fe3",
+      "createdAt": "2026-10-22T01:37:14.000Z",
+      "updatedAt": "2026-10-22T01:37:14.000Z",
+      "uid": "35240-98b5e796-62a8-4f4a-be51-c08a61af6fe3"
     }
   ],
   "auth": {
@@ -382,25 +413,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-WallarmApi-Token"
+        "value": "X-WallarmApi-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ab2a086f-d782-4d15-9b94-fa3ccc881e2c",
-    "name": "Wallarm Applications Triggers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us1.api.wallarm.com"
     }
-  }
+  ]
 }

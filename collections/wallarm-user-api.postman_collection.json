@@ -1,172 +1,183 @@
 {
+  "info": {
+    "_postman_id": "84caba21-14e2-4574-8259-8ea4d358138d",
+    "name": "Wallarm User API",
+    "description": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:37:18.000Z",
+    "updatedAt": "2026-10-22T01:37:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-84caba21-14e2-4574-8259-8ea4d358138d"
+  },
   "item": [
     {
-      "id": "738d69da-c041-4222-aad2-29707ffeeaca",
-      "name": "User",
-      "description": {
-        "content": "User account and authentication management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "ad2b17c2-f026-4ed7-b6f0-0820f752680f",
-          "name": "Get User Details",
-          "request": {
-            "name": "Get User Details",
-            "description": {
-              "content": "Retrieve current user account details including the client ID required for subsequent API calls in multi-tenant environments.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "user"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "user",
+          "item": [
             {
-              "id": "ef61621a-31ff-4220-968c-39c0cf7591cc",
-              "name": "User details returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Get User Details",
+              "id": "5a381dea-1a7f-4cd3-a37d-7b1b0370eb72",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 200,\n  \"body\": {\n    \"id\": 3104,\n    \"email\": \"string\",\n    \"client_id\": 8994,\n    \"name\": \"string\",\n    \"role\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7e8430f0-0e54-4ed1-9383-7cccc421aaf6",
-              "name": "Unauthorized - invalid or missing API token",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v1",
-                    "user"
-                  ],
+                  "raw": "{{baseUrl}}/v1/user",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
+                  "path": [
+                    "v1",
+                    "user"
+                  ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Retrieve current user account details including the client ID required for subsequent API calls in multi-tenant environments."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "c3b8e3af-ee17-4e35-9ba4-5b6d6e068447",
+                  "name": "User details returned successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-WallarmApi-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"body\": {\n    \"id\": \"<integer>\",\n    \"email\": \"<string>\",\n    \"client_id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"role\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:37:19.000Z",
+                  "updatedAt": "2026-10-22T01:37:19.000Z",
+                  "uid": "35240-c3b8e3af-ee17-4e35-9ba4-5b6d6e068447"
+                },
+                {
+                  "id": "05e39d05-ce5f-47d6-9cbf-07b675b8a0b1",
+                  "name": "Unauthorized - invalid or missing API token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-WallarmApi-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/user",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "user"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:37:19.000Z",
+                  "updatedAt": "2026-10-22T01:37:19.000Z",
+                  "uid": "35240-05e39d05-ce5f-47d6-9cbf-07b675b8a0b1"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:37:19.000Z",
+              "updatedAt": "2026-10-22T01:37:19.000Z",
+              "uid": "35240-5a381dea-1a7f-4cd3-a37d-7b1b0370eb72"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "32c8561e-6e85-4ba7-978a-38e2f0d58c31",
+          "createdAt": "2026-10-22T01:37:19.000Z",
+          "updatedAt": "2026-10-22T01:37:19.000Z",
+          "uid": "35240-32c8561e-6e85-4ba7-978a-38e2f0d58c31"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://us1.api.wallarm.com",
-      "key": "baseUrl"
+      "id": "3855612c-0b1e-4f85-ae9d-b88480014dc7",
+      "createdAt": "2026-10-22T01:37:19.000Z",
+      "updatedAt": "2026-10-22T01:37:19.000Z",
+      "uid": "35240-3855612c-0b1e-4f85-ae9d-b88480014dc7"
     }
   ],
   "auth": {
@@ -174,25 +185,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-WallarmApi-Token"
+        "value": "X-WallarmApi-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "9ac59a86-ef23-481b-ae1f-0d2eb87cdf16",
-    "name": "Wallarm Applications User API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us1.api.wallarm.com"
     }
-  }
+  ]
 }

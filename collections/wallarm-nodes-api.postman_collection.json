@@ -1,372 +1,412 @@
 {
+  "info": {
+    "_postman_id": "80b02eda-4505-4116-9c3c-82135c02b20e",
+    "name": "Wallarm Nodes API",
+    "description": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:37:01.000Z",
+    "updatedAt": "2026-10-22T01:37:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-80b02eda-4505-4116-9c3c-82135c02b20e"
+  },
   "item": [
     {
-      "id": "c3459848-0bae-4f8a-8c3f-258a89f8e47f",
-      "name": "Nodes",
-      "description": {
-        "content": "Wallarm filter node management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "f8a4fd08-b8c6-4557-b3ac-5e4b300b6514",
-          "name": "List Filter Nodes",
-          "request": {
-            "name": "List Filter Nodes",
-            "description": {
-              "content": "Retrieve all Wallarm filter nodes registered to the client account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "objects",
-                "node"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "objects",
+          "item": [
             {
-              "id": "4dc1673f-a8ca-4f25-93fe-eb285640565c",
-              "name": "List of filter nodes returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "node"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
+              "name": "node",
+              "item": [
+                {
+                  "name": "List Filter Nodes",
+                  "id": "a8942687-d6ad-4fae-a236-25369f7769ee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 1453,\n  \"body\": [\n    {\n      \"id\": 3619,\n      \"hostname\": \"string\",\n      \"ip\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"last_activity\": 3105\n    },\n    {\n      \"id\": 8593,\n      \"hostname\": \"string\",\n      \"ip\": \"string\",\n      \"status\": \"string\",\n      \"type\": \"string\",\n      \"version\": \"string\",\n      \"last_activity\": 5465\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "23fba153-ed88-4acd-b5b4-8dc52bfeacfe",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "node"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/objects/node",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "objects",
+                        "node"
+                      ]
+                    },
+                    "description": "Retrieve all Wallarm filter nodes registered to the client account."
+                  },
+                  "response": [
+                    {
+                      "id": "f6659889-c7b9-4d32-bfb9-38f6f3b9642d",
+                      "name": "List of filter nodes returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/node",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "node"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"body\": [\n    {\n      \"id\": \"<integer>\",\n      \"hostname\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"last_activity\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"hostname\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"status\": \"<string>\",\n      \"type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"last_activity\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:37:01.000Z",
+                      "updatedAt": "2026-10-22T01:37:01.000Z",
+                      "uid": "35240-f6659889-c7b9-4d32-bfb9-38f6f3b9642d"
+                    },
+                    {
+                      "id": "abc8e73c-df5b-4426-b23c-c044a0806dbf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/node",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "node"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:37:01.000Z",
+                      "updatedAt": "2026-10-22T01:37:01.000Z",
+                      "uid": "35240-abc8e73c-df5b-4426-b23c-c044a0806dbf"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T01:37:01.000Z",
+                  "updatedAt": "2026-10-22T01:37:01.000Z",
+                  "uid": "35240-a8942687-d6ad-4fae-a236-25369f7769ee"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "bfb8885a-14b8-41b1-b65d-ae7746aa21bb",
+              "createdAt": "2026-10-22T01:37:01.000Z",
+              "updatedAt": "2026-10-22T01:37:01.000Z",
+              "uid": "35240-bfb8885a-14b8-41b1-b65d-ae7746aa21bb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "71406e86-992e-4a69-8205-d0a83e5a98aa",
-          "name": "Create Filter Node",
-          "request": {
-            "name": "Create Filter Node",
-            "description": {
-              "content": "Register a new Wallarm filter node with the platform.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "node"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "abacebb1-74bb-43d6-a989-b4778134667b",
-              "name": "Node created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "node"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 2626,\n  \"body\": {\n    \"id\": 353,\n    \"hostname\": \"string\",\n    \"ip\": \"string\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"version\": \"string\",\n    \"last_activity\": 3720\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7be18599-5de1-4cfc-bc8b-759204847f5d",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "node"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "7929eb05-3255-403b-8325-77e67c062ee1",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "node"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d5cd7ec0-50f9-4739-9b72-c024b35ba49e",
+          "createdAt": "2026-10-22T01:37:01.000Z",
+          "updatedAt": "2026-10-22T01:37:01.000Z",
+          "uid": "35240-d5cd7ec0-50f9-4739-9b72-c024b35ba49e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "7312767a-5c0c-423f-b97b-4cab1b5141d3",
+      "createdAt": "2026-10-22T01:37:01.000Z",
+      "updatedAt": "2026-10-22T01:37:01.000Z",
+      "uid": "35240-7312767a-5c0c-423f-b97b-4cab1b5141d3"
+    },
     {
-      "type": "string",
-      "value": "https://us1.api.wallarm.com",
-      "key": "baseUrl"
+      "name": "v2",
+      "item": [
+        {
+          "name": "node",
+          "item": [
+            {
+              "name": "Create Filter Node",
+              "id": "df670d02-8ef8-4624-8f52-bdb3a8f5f1cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/node",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "node"
+                  ]
+                },
+                "description": "Register a new Wallarm filter node with the platform."
+              },
+              "response": [
+                {
+                  "id": "a426c80e-d8f8-4549-8bac-ce3db1566cbe",
+                  "name": "Node created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-WallarmApi-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/node",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "node"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"body\": {\n    \"id\": \"<integer>\",\n    \"hostname\": \"<string>\",\n    \"ip\": \"<string>\",\n    \"status\": \"<string>\",\n    \"type\": \"<string>\",\n    \"version\": \"<string>\",\n    \"last_activity\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:37:01.000Z",
+                  "updatedAt": "2026-10-22T01:37:01.000Z",
+                  "uid": "35240-a426c80e-d8f8-4549-8bac-ce3db1566cbe"
+                },
+                {
+                  "id": "389cdff1-6934-4132-9b28-2f546b53e6c1",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-WallarmApi-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/node",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "node"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:37:01.000Z",
+                  "updatedAt": "2026-10-22T01:37:01.000Z",
+                  "uid": "35240-389cdff1-6934-4132-9b28-2f546b53e6c1"
+                },
+                {
+                  "id": "1320a6c3-edcb-443c-aa16-64ae42c7138a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-WallarmApi-Token",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"hostname\": \"<string>\",\n  \"type\": \"<string>\",\n  \"clientid\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/node",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "node"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:37:01.000Z",
+                  "updatedAt": "2026-10-22T01:37:01.000Z",
+                  "uid": "35240-1320a6c3-edcb-443c-aa16-64ae42c7138a"
+                }
+              ],
+              "createdAt": "2026-10-22T01:37:01.000Z",
+              "updatedAt": "2026-10-22T01:37:01.000Z",
+              "uid": "35240-df670d02-8ef8-4624-8f52-bdb3a8f5f1cf"
+            }
+          ],
+          "id": "a358df81-0ab9-42f5-b3b0-81ff797e1535",
+          "createdAt": "2026-10-22T01:37:01.000Z",
+          "updatedAt": "2026-10-22T01:37:01.000Z",
+          "uid": "35240-a358df81-0ab9-42f5-b3b0-81ff797e1535"
+        }
+      ],
+      "id": "bcd19d7c-f90a-413a-8526-f33739d2a32d",
+      "createdAt": "2026-10-22T01:37:01.000Z",
+      "updatedAt": "2026-10-22T01:37:01.000Z",
+      "uid": "35240-bcd19d7c-f90a-413a-8526-f33739d2a32d"
     }
   ],
   "auth": {
@@ -374,25 +414,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-WallarmApi-Token"
+        "value": "X-WallarmApi-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "178f9468-1b71-4ff8-b1ff-8147816dbf7e",
-    "name": "Wallarm Applications Nodes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us1.api.wallarm.com"
     }
-  }
+  ]
 }

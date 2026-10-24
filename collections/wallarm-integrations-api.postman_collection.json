@@ -1,175 +1,195 @@
 {
+  "info": {
+    "_postman_id": "d764a696-3ee6-4f80-9385-c08c144f48c9",
+    "name": "Wallarm Integrations API",
+    "description": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:36:50.000Z",
+    "updatedAt": "2026-10-22T01:36:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d764a696-3ee6-4f80-9385-c08c144f48c9"
+  },
   "item": [
     {
-      "id": "0a0988f0-d926-408a-a170-2f89295d9052",
-      "name": "Integrations",
-      "description": {
-        "content": "Third-party integrations (SIEM, notifications, etc.)",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "21384dc1-76ea-4955-b67d-bacd70e6939b",
-          "name": "List Integrations",
-          "request": {
-            "name": "List Integrations",
-            "description": {
-              "content": "Retrieve all configured third-party integrations (Slack, PagerDuty, Splunk, Jira, etc.).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "objects",
-                "integration"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "objects",
+          "item": [
             {
-              "id": "166ed05a-bb3e-4f62-b4be-a5f6231ae0d3",
-              "name": "List of integrations returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "integration"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
+              "name": "integration",
+              "item": [
+                {
+                  "name": "List Integrations",
+                  "id": "8646f7d9-a049-45b6-95db-e1982343f2f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 2696,\n  \"body\": [\n    {\n      \"id\": 828,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"enabled\": false,\n      \"created\": 668\n    },\n    {\n      \"id\": 2416,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"enabled\": false,\n      \"created\": 7966\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c7adff2b-b3ba-4e01-8a09-3892abf3abf1",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "objects",
-                    "integration"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "X-WallarmApi-Token",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": \"<object>\",\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/objects/integration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "objects",
+                        "integration"
+                      ]
+                    },
+                    "description": "Retrieve all configured third-party integrations (Slack, PagerDuty, Splunk, Jira, etc.)."
+                  },
+                  "response": [
+                    {
+                      "id": "b895b345-57ff-400c-9166-476e818fe09d",
+                      "name": "List of integrations returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/integration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "integration"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"body\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:36:50.000Z",
+                      "updatedAt": "2026-10-22T01:36:50.000Z",
+                      "uid": "35240-b895b345-57ff-400c-9166-476e818fe09d"
+                    },
+                    {
+                      "id": "59cfe214-93cc-40a5-b5b9-fd3133eb4a22",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-WallarmApi-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientid\": \"<integer>\",\n  \"filter\": {},\n  \"limit\": 50,\n  \"offset\": 0,\n  \"order_by\": \"<string>\",\n  \"order_desc\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/objects/integration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "objects",
+                            "integration"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:36:50.000Z",
+                      "updatedAt": "2026-10-22T01:36:50.000Z",
+                      "uid": "35240-59cfe214-93cc-40a5-b5b9-fd3133eb4a22"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T01:36:50.000Z",
+                  "updatedAt": "2026-10-22T01:36:50.000Z",
+                  "uid": "35240-8646f7d9-a049-45b6-95db-e1982343f2f9"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "1f208194-9608-499f-ae76-cbe4e0e5054a",
+              "createdAt": "2026-10-22T01:36:50.000Z",
+              "updatedAt": "2026-10-22T01:36:50.000Z",
+              "uid": "35240-1f208194-9608-499f-ae76-cbe4e0e5054a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "fb1443aa-32a4-4544-be50-9c31daeb2e08",
+          "createdAt": "2026-10-22T01:36:50.000Z",
+          "updatedAt": "2026-10-22T01:36:50.000Z",
+          "uid": "35240-fb1443aa-32a4-4544-be50-9c31daeb2e08"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://us1.api.wallarm.com",
-      "key": "baseUrl"
+      "id": "655b2480-e43a-40f1-b46c-93c103be6481",
+      "createdAt": "2026-10-22T01:36:50.000Z",
+      "updatedAt": "2026-10-22T01:36:50.000Z",
+      "uid": "35240-655b2480-e43a-40f1-b46c-93c103be6481"
     }
   ],
   "auth": {
@@ -177,25 +197,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-WallarmApi-Token"
+        "value": "X-WallarmApi-Token",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f69719fb-094a-48ce-8a18-717db5c00fe2",
-    "name": "Wallarm Applications Integrations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Wallarm API provides programmatic access to the Wallarm API Security Platform. It enables management of attacks, incidents, vulnerabilities, security rules, IP lists, filter nodes, users, integrations, and triggers. The API is available on both US Cloud and EU Cloud endpoints and uses API token authentication.\n\nContact Support:\n Name: Wallarm Support\n Email: support@wallarm.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://us1.api.wallarm.com"
     }
-  }
+  ]
 }
