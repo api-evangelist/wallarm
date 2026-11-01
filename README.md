@@ -1,4 +1,4 @@
-# Wallarm (wallarm)
+# Wallarm
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,79 +66,180 @@
 
 Wallarm provides advanced API security and protection solutions for APIs, web applications, and microservices. The platform includes API discovery, real-time attack protection, vulnerability testing, and an open-source API Firewall that enforces OpenAPI specifications as a positive security model. Wallarm supports deployment on Kubernetes, cloud environments, and as an NGINX-based proxy.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/wallarm/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/wallarm/refs/heads/main/apis.yml)
+**Areas:** API Security · Security Testing · WAF · Cybersecurity
 
-## Scope
+## Wallarm on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Wallarm is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wallarm/](https://apis.io/providers/wallarm/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- API Security
-- Security Testing
-- WAF
-- Cybersecurity
+- [Wallarm Applications API](https://apis.io/apis/wallarm/wallarm-applications-api/) — Application and scope management
+- [Wallarm Attacks API](https://apis.io/apis/wallarm/wallarm-attacks-api/) — Attack and incident data management
+- [Wallarm Integrations API](https://apis.io/apis/wallarm/wallarm-integrations-api/) — Third-party integrations (SIEM, notifications, etc.)
+- [Wallarm IP Lists API](https://apis.io/apis/wallarm/wallarm-ip-lists-api/) — IP allowlist, denylist, and graylist management
+- [Wallarm Nodes API](https://apis.io/apis/wallarm/wallarm-nodes-api/) — Wallarm filter node management
+- [Wallarm Rules API](https://apis.io/apis/wallarm/wallarm-rules-api/) — Security rules and virtual patch management
+- [Wallarm Triggers API](https://apis.io/apis/wallarm/wallarm-triggers-api/) — Automated trigger and alert management
+- [Wallarm User API](https://apis.io/apis/wallarm/wallarm-user-api/) — User account and authentication management
+- [Wallarm Vulnerabilities API](https://apis.io/apis/wallarm/wallarm-vulnerabilities-api/) — Vulnerability detection and management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Wallarm API
+Model Context Protocol servers that expose the API to agents.
 
-The Wallarm API provides programmatic access to the Wallarm API Security Platform, enabling management of attacks, incidents, vulnerabilities, rules, IP lists, filter nodes, users, and integrations. The API is available on both the US Cloud (us1.api.wallarm.com) and EU Cloud (api.wallarm.com), and uses API token authentication via the X-WallarmApi-Token header.
+- [Moved to /providers/wallarm/](https://apis.io/servers/wallarm/wallarm/)
 
-- **Human URL:** [https://docs.wallarm.com/api/overview/](https://docs.wallarm.com/api/overview/)
-- **Base URL:** `https://us1.api.wallarm.com`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- API Security
-- Attack Detection
-- Vulnerability Management
-- WAF
-- Rules
-- IP Management
+- [Wallarm Agentic Access](https://apis.io/agentic-access/wallarm/wallarm-agentic-access/)
 
-#### Properties
+#### JSON Schema (2)
 
-- [Documentation](https://docs.wallarm.com/api/overview/)
-- [Swagger U I](https://apiconsole.us1.wallarm.com/)
-- [Swagger U I](https://apiconsole.eu1.wallarm.com/)
-- [OpenAPI](openapi/wallarm-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/wallarm.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/wallarm.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Rules](rules/wallarm-rules.yml)
-- [JSON Schema](json-schema/wallarm-attack-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/wallarm-vulnerability-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/wallarm-context.jsonld)
-- [Vocabulary](vocabulary/wallarm-vocabulary.yml)
+The data models the API reads and writes.
 
-## Common Properties
+- [Wallarm Attack](https://apis.io/schemas/wallarm/wallarm-attack/)
+- [Wallarm Vulnerability](https://apis.io/schemas/wallarm/wallarm-vulnerability/)
 
-- [LinkedIn](https://www.linkedin.com/company/wallarm)
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Wallarm Attack Structure](https://apis.io/json-structure/wallarm/wallarm-attack-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Wallarm Context](https://apis.io/jsonld/wallarm/wallarm-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Wallarm API Security Vocabulary](https://apis.io/vocabularies/wallarm/wallarm-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Wallarm Addiprule Example](https://apis.io/examples/wallarm/wallarm-addIpRule-example/)
+- [Wallarm Listattacks Example](https://apis.io/examples/wallarm/wallarm-listAttacks-example/)
+- [Wallarm Listvulnerabilities Example](https://apis.io/examples/wallarm/wallarm-listVulnerabilities-example/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Wallarm API](https://apis.io/collections/wallarm/open-wallarm/)
+- [Wallarm Applications API](https://apis.io/collections/wallarm/open-wallarm-applications-api/)
+- [Wallarm Applications Attacks API](https://apis.io/collections/wallarm/open-wallarm-attacks-api/)
+- [Wallarm Applications Integrations API](https://apis.io/collections/wallarm/open-wallarm-integrations-api/)
+- [Wallarm Applications IP Lists API](https://apis.io/collections/wallarm/open-wallarm-ip-lists-api/)
+- [Wallarm Applications Nodes API](https://apis.io/collections/wallarm/open-wallarm-nodes-api/)
+- [Wallarm Applications Rules API](https://apis.io/collections/wallarm/open-wallarm-rules-api/)
+- [Wallarm Applications Triggers API](https://apis.io/collections/wallarm/open-wallarm-triggers-api/)
+- [Wallarm Applications User API](https://apis.io/collections/wallarm/open-wallarm-user-api/)
+- [Wallarm Applications Vulnerabilities API](https://apis.io/collections/wallarm/open-wallarm-vulnerabilities-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Wallarm — jsonschema rules](https://apis.io/rules/wallarm/wallarm-jsonschema-spectral-rules/)
+- [Wallarm API Rules](https://apis.io/rules/wallarm/wallarm-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wallarm Authentication](https://apis.io/security/wallarm/wallarm-authentication/)
+- [Wallarm Domain Security](https://apis.io/security/wallarm/wallarm-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Wallarm Plans Pricing](https://apis.io/plans/wallarm/wallarm-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wallarm Rate Limits](https://apis.io/rate-limits/wallarm/wallarm-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Wallarm Finops](https://apis.io/finops/wallarm/wallarm-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.wallarm.com/)
 - [Documentation](https://docs.wallarm.com/)
-- [Reference](https://docs.wallarm.com/api/overview/)
-- [Examples](https://docs.wallarm.com/api/request-examples/)
-- [Console](https://apiconsole.us1.wallarm.com/)
-- [Console](https://apiconsole.eu1.wallarm.com/)
-- [GitHub Organization](https://github.com/wallarm)
-- [Open Source](https://github.com/wallarm/api-firewall)
-- [SDK](https://github.com/wallarm/wallarm-go)
-- [Terraform Provider](https://github.com/wallarm/terraform-provider-wallarm)
-- [Terraform Module](https://github.com/wallarm/terraform-aws-wallarm)
-- [SDK](https://github.com/wallarm/ingress)
-- [Helm Chart](https://github.com/wallarm/helm-charts)
-- [Tool](https://github.com/wallarm/gotestwaf)
-- [Integrations](https://www.wallarm.com/product/integrations)
-- [L L Ms Txt](https://docs.wallarm.com/llms.txt)
+- [Blog](https://lab.wallarm.com/feed/)
+- [GitHub](https://github.com/wallarm)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.9** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 68.2 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 7.9 |
+
+**Agent readiness 29.3** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wallarm/](https://apis.io/providers/wallarm/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wallarm: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wallarm/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
